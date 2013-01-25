@@ -1,0 +1,24 @@
+#!/usr/bin/python
+
+import sys
+
+if len(sys.argv) < 2:
+    print "Usage: splitn [N] [infile]"
+    print "Produces N output files with names infile.%d, and"
+    print "splits input lines round-robin across the output files."
+    sys.exit(1)
+
+N=int(sys.argv[1])
+infile=open(sys.argv[2])
+
+outfiles=[]
+for i in range(N):
+    outfiles.append(open('%s.%d' % (sys.argv[2], i), 'w'))
+
+idx = 0
+for line in infile.readlines():
+    outfiles[idx].write(line)
+    idx = (idx + 1) % len(outfiles)
+
+for f in outfiles:
+    f.close()

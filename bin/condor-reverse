@@ -1,0 +1,33 @@
+#!/usr/bin/python
+
+import sys
+
+lines = sys.stdin.readlines()
+
+preamble = []
+jobs = []
+in_preamble = True
+
+curjob = []
+
+for l in lines:
+    key = l.lower().strip().split('=')[0].strip()
+    if key.startswith('arg'): in_preamble = False
+
+    if in_preamble:
+        preamble.append(l.strip())
+    else:
+        if key == 'queue':
+            curjob.append(l.strip())
+            jobs.append(curjob)
+            curjob = []
+        else:
+            curjob.append(l.strip())
+
+jobs.reverse()
+
+for l in preamble:
+    print l
+for j in jobs:
+    for l in j:
+        print l

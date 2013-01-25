@@ -1,0 +1,40 @@
+#!/usr/bin/python
+
+import sys
+import math
+
+if len(sys.argv) < 4:
+    print "Usage: histogram data.csv column-number bin-size [min] [max]"
+    sys.exit(1)
+
+infile = sys.argv[1]
+col = int(sys.argv[2])
+binsize = float(sys.argv[3])
+
+data = []
+for line in open(infile).readlines():
+    parts = line.split(',')
+    if len(parts) > col: continue
+    val = float(parts[col-1])
+    data.append(val)
+
+if len(sys.argv) >= 6:
+    m = int(sys.argv[4])
+    M = int(sys.argv[5])
+else:
+    m = min(data)
+    M = max(data)
+
+ran = M - m
+bincount = int(math.ceil(ran / binsize))
+if bincount == 0: bincount = 1
+
+bins = [0] * bincount
+
+for d in data:
+    b = int(math.floor((d - m) / binsize))
+    if (b >= bincount): b = bincount - 1
+    bins[b] += 1
+
+for i in range(bincount):
+    print "%0.0f - %0.0f,%d" % (m + i*binsize, m + (i+1)*binsize, bins[i])

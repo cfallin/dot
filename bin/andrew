@@ -1,0 +1,2 @@
+#!/bin/sh
+kinit cfallin@ANDREW.CMU.EDU && aklog andrew.cmu.edu

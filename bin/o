@@ -1,0 +1,5 @@
+#!/bin/sh
+cd ~/Documents/orgmode
+git commit -am 'changes'
+git pull
+emacs work.org &
