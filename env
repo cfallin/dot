@@ -9,13 +9,14 @@ alias asdf="setxkbmap dvorak"
 alias aoeu="setxkbmap -layout us"
 
 export PIN=/usr/local/pin
+export PIN_HOME=$PIN
 export PATH=$PIN:$PATH
 
 # simple history: don't ignore duplicates (default in newer distros)
 export HISTCONTROL=""
 
 # start a VNC server
-alias vnc="vncserver -geometry 3840x1080 -geometry 1920x1080 -geometry 1280x800"
+alias vnc="vncserver -geometry 3840x1080 -geometry 1920x1080 -geometry 1280x800 -geometry 2560x800 -geometry 1280x720 -geometry 1280x1024"
 
 if [ `hostname` == "xap" ]; then
     # home workstation
@@ -24,4 +25,11 @@ if [ `hostname` == "xap" ]; then
     alias expumount="fusermount -u /home/cfallin/exp"
     alias dualhead="xrandr --output HDMI1 --mode 1920x1080 --output VGA1 --mode 1280x1024 --right-of HDMI1"
     alias singlehead="xrandr --output HDMI1 --mode 1920x1080 --output VGA1 --off"
+fi
+if [ `hostname` == "atom" ]; then
+    # office workstation
+    alias exp='cd /afs/ece/usr/cfallin/exp'
+    alias afs='cd /afs/ece/usr/cfallin'
+    alias dualhead="xrandr --output DVI-0 --auto --output DVI-1 --auto --right-of DVI-0 --rotate normal"
+    alias singlehead="xrandr --output DVI-0 --auto --output DVI-1 --auto --same-as DVI-0"
 fi
