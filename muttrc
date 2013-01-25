@@ -1,0 +1,59 @@
+set from = "cfallin@c1f.net"
+set realname = "Chris Fallin"
+set folder="imaps://c1f.net/"
+set spoolfile="+INBOX"
+set postponed = "Drafts"
+#set record = "+[Gmail]/Sent Mail"
+set record = "+INBOX"
+unset trash # "delete" just removes a label
+set imap_user = "cfallin"
+set move = no
+set copy = no
+set imap_keepalive = 900
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set auto_tag = yes
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop
+bind pager a group-reply
+#folder-hook .* 'set record = "^"'
+
+set mail_check = 60
+set timeout = 60
+
+macro index,pager gl "<change-folder>"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+#macro index,pager ga "<change-folder>=[Gmail]/All<tab><enter>" "Go to all mail"
+#macro index,pager gs "<change-folder>=[Gmail]/Sent<tab><enter>" "Go to sent items"
+
+bind index,pager gg imap-fetch-mail
+
+set header_cache = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/cerficates
+
+set smtp_url = "smtp://cfallin@smtp.gmail.com:587/"
+
+set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
+set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
+set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
+set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xC9C40C31 -- -r %r -- %f"
+set pgp_encrypt_sign_command="pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+set pgp_import_command="gpg --no-verbose --import -v %f"
+set pgp_export_command="gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r" 
+set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r" 
+set pgp_autosign=no
+#set pgp_sign_as=0x9D81A4AE
+set pgp_sign_as=0xDAAE873E
+set pgp_replyencrypt=yes
+set pgp_timeout=1800
+set pgp_good_sign="^gpg: Good signature from"

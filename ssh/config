@@ -1,0 +1,30 @@
+CheckHostIP no
+ServerAliveInterval 60
+
+#Host c1f.net
+#  HostName mire.hcoop.net
+#  GSSAPIAuthentication yes
+#  GSSAPIDelegateCredentials yes
+#  User cfallin
+
+Host *
+  GSSAPIAuthentication no
+
+Host atom
+  HostName atom.ece.cmu.edu
+
+Host ece*.ece.cmu.edu
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+
+Host jeep
+  HostName jeep.scotch.ece.cmu.local
+
+Host safari
+  HostName safari.ece.cmu.edu
+
+Host dromedary
+  HostName dromedary.scotch.ece.cmu.local
+
+Host blue
+  Hostname blue.c1f.net

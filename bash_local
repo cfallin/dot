@@ -1,0 +1,4 @@
+export EDITOR=emacs
+export PATH=/opt/cmucl/bin:$PATH
+#alias screen="screen -e^Vv -x -R"
+alias ece="kinit cfallin@ECE.CMU.EDU && afslog"

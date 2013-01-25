@@ -1,0 +1,8 @@
+startup_message off
+vbell off
+#caption always "%w"
+#escape ^Vv
+#escape ^Zz
+
+# leaves 6 chars for hostname
+caption always "%w %-46= | %H | %c:%s | %Y-%m-%d (%D)"

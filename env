@@ -1,0 +1,30 @@
+#alias vpn='sudo cp /etc/resolv.conf{,.vpn}; sudo vpnc-connect /etc/vpnc/vpnc.conf'
+#alias unvpn='sudo vpnc-disconnect; sudo cp /etc/resolv.conf{.vpn,}'
+
+#export PATH=/opt/cisco/vpn/bin:/usr/local/llvm/bin:$PATH
+export PATH=/opt/cisco/anyconnect/bin:$PATH
+
+alias evine=evince
+
+#. /opt/intel/Compiler/11.1/073/bin/iccvars.sh intel64
+
+export PATH=/usr/local/simics-3.0.30/bin:$PATH
+
+export PATH=~/bin:$PATH
+
+export PATH=/usr/local/thunderbird:$PATH
+
+alias asdf="setxkbmap dvorak"
+alias aoeu="setxkbmap -layout us"
+
+alias expmount="sshfs atom:/afs/ece/usr/cfallin/exp /home/cfallin/exp"
+alias expumount="fusermount -u /home/cfallin/exp"
+
+export PIN=/usr/local/pin
+
+alias dualhead="xrandr --output HDMI1 --auto --output VGA1 --auto --right-of HDMI1"
+export HISTCONTROL=""
+
+alias vnc="vncserver -geometry 1920x1080 -geometry 1280x800"
+
+alias thoughts="encfs ~/Documents/.thoughts-crypted ~/Documents/thoughts-enc"
