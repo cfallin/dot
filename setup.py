@@ -12,7 +12,7 @@ if len(sys.argv) > 1:
 skip = ['setup.py', '..', '.', '.git', '.gitmodules', '.gitignore']
 for entry in os.listdir('.'):
     if entry in skip: continue
-    dest = '../%s' % entry
+    dest = '../.%s' % entry
     linktarg = 'dot/%s' % entry
     archival = '%s/%s' % (archival_path, entry)
 
