@@ -54,3 +54,5 @@ let g:miniBufExplMapWindowNavVim=1
 
 nnoremap <leader>f :bn<cr>
 nnoremap <leader>d :bp<cr>
+
+au BufNewFile,BufRead *.rs set filetype=rust
