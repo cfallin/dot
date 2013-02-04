@@ -91,3 +91,15 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  )
+
+(defun strip-string (s)
+  (let* ((l (length s))
+         (last-char (if (> l 0)
+                        (substring s -1 nil)
+                      "")))
+    (if (string= last-char "\n")
+        (substring s 0 -1)
+      s)))
+
+(defun my-hostname ()
+  (strip-string (shell-command-to-string "hostname")))
