@@ -33,3 +33,5 @@ if [ `hostname` == "atom" ]; then
     alias dualhead="xrandr --output DVI-0 --auto --output DVI-1 --auto --right-of DVI-0 --rotate normal"
     alias singlehead="xrandr --output DVI-0 --auto --output DVI-1 --auto --same-as DVI-0"
 fi
+
+export PS1="\u@\h:\w\\\$ "
