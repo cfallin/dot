@@ -48,3 +48,5 @@ for entry in os.listdir('bin'):
     linktarg = '../dot/bin/%s' % entry
     archival = '%s/bin/%s' % (archival_path, entry)
     setup_link(dest, linktarg, archival)
+
+os.system("chmod -R go-rwx ssh/")
