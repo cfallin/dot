@@ -10,6 +10,6 @@
 * yum update
 * yum install VirtualBox-guest kmod-VirtualBox
 * yum groupinstall 'Development Tools'
-* yum install vim emacs screen protobuf-devel protobuf-static libstdc++-static zlib-static scons
+* yum install vim emacs screen protobuf-devel protobuf-static glibc-static libstdc++-static zlib-static scons
 * yum install openafs-client kmod-openafs
 * copy /etc/krb5.conf from another machine; set up /etc/openafs/ThisCell; remove "-dynroot" from /etc/sysconfig/openafs
