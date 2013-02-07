@@ -43,7 +43,7 @@ if archival_path != '' and not os.path.exists(archival_path + '/bin'):
     os.mkdir(archival_path + '/bin')
 
 for entry in os.listdir('bin'):
-    if entry in ['.', '..']: continue
+    if entry in ['.', '..', 'doc']: continue
     dest = '../bin/%s' % entry
     linktarg = '../dot/bin/%s' % entry
     archival = '%s/bin/%s' % (archival_path, entry)
