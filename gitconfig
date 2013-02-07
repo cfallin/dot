@@ -1,3 +1,5 @@
 [user]
 	name = Chris Fallin
 	email = cfallin@c1f.net
+[push]
+	default = matching
