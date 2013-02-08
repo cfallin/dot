@@ -5,7 +5,6 @@ set spoolfile="+INBOX"
 set postponed = "Drafts"
 #set record = "+[Gmail]/Sent Mail"
 set record = "+INBOX"
-unset trash # "delete" just removes a label
 set imap_user = "cfallin"
 set move = no
 set copy = no
