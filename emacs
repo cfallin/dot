@@ -12,6 +12,9 @@
 
 (setq c-default-style "bsd")
 (setq c-basic-offset 4)
+(setq tab-width 4)
+(setq-default indent-tabs-mode nil)
+(setq-default py-indent-offset 4)
 
 (if (fboundp 'iswitchb-mode)
  (iswitchb-mode 1))
