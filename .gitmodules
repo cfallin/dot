@@ -4,3 +4,6 @@
 [submodule "vim/bundle/vim-yankstack"]
 	path = vim/bundle/vim-yankstack
 	url = git@github.com:maxbrunsfeld/vim-yankstack
+[submodule "emacs.d/evil"]
+	path = emacs.d/evil
+	url = git://gitorious.org/git/evil.git

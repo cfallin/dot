@@ -106,3 +106,7 @@
 
 (defun my-hostname ()
   (strip-string (shell-command-to-string "hostname")))
+
+(add-to-list 'load-path "~/.emacs.d/evil")
+(require 'evil)
+(evil-mode 1)
