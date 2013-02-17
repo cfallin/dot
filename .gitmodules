@@ -6,4 +6,4 @@
 	url = git@github.com:maxbrunsfeld/vim-yankstack
 [submodule "emacs.d/evil"]
 	path = emacs.d/evil
-	url = git://gitorious.org/git/evil.git
+	url = git://gitorious.org/evil/evil.git
