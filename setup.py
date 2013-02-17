@@ -4,7 +4,8 @@ import os
 import os.path
 import sys
 
-os.system('git submodule foreach git pull')
+os.system("git submodule init")
+os.system("git submodule update")
 
 archival_path = ''
 if len(sys.argv) > 1:
