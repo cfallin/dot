@@ -4,9 +4,6 @@
 [submodule "vim/bundle/vim-yankstack"]
 	path = vim/bundle/vim-yankstack
 	url = git@github.com:maxbrunsfeld/vim-yankstack
-[submodule "vim/bundle/vim-gitgutter"]
-    path = vim/bundle/vim-gitgutter
-    url = git://git@github.com/airblade/vim-gitgutter.git
 [submodule "emacs.d/evil"]
 	path = emacs.d/evil
 	url = git://gitorious.org/evil/evil.git
