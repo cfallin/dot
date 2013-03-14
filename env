@@ -3,7 +3,7 @@
 # common typo
 alias evine=evince
 
-export PATH=~/bin:$PATH
+export PATH=~/bin:~/local/bin:$PATH
 
 alias asdf="setxkbmap dvorak"
 alias aoeu="setxkbmap -layout us"
