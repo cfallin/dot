@@ -56,3 +56,4 @@ nnoremap <leader>f :bn<cr>
 nnoremap <leader>d :bp<cr>
 
 au BufNewFile,BufRead *.rs set filetype=rust
+au BufNewFile,BufRead *.rktl set filetype=scheme
