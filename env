@@ -26,7 +26,7 @@ if [ `hostname` == "xap" ]; then
     alias dualhead="xrandr --output HDMI1 --mode 1920x1080 --output VGA1 --mode 1280x1024 --right-of HDMI1"
     alias singlehead="xrandr --output HDMI1 --mode 1920x1080 --output VGA1 --off"
 fi
-if [ `hostname` == "atom" ]; then
+if [ `hostname` == "atom.ece.cmu.edu" ]; then
     # office workstation
     alias exp='cd /afs/ece/usr/cfallin/exp'
     alias afs='cd /afs/ece/usr/cfallin'
