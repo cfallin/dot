@@ -32,6 +32,7 @@ bind editor <Tab> complete-query
 bind editor ^T complete
 bind editor <space> noop
 bind pager a group-reply
+bind pager b previous-page
 macro index,pager ] "<copy-message>=Archive<enter><enter><delete-message>"
 macro index,pager gl "<change-folder>"
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
