@@ -35,3 +35,8 @@ if [ `hostname` == "atom.ece.cmu.edu" ]; then
 fi
 
 export PS1="\u@\h:\w\\\$ "
+
+which keychain 2>/dev/null >/dev/null
+if [ $? -eq 0 ]; then
+    eval `keychain --eval --agents ssh 2>/dev/null -q`
+fi
