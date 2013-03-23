@@ -2,4 +2,8 @@
 cd ~/Documents/orgmode
 git commit -am 'changes'
 git pull
-emacs work.org &
+if [ "x$DISPLAY" != "x" ]; then
+    emacs work.org &
+else
+    emacs work.org
+fi
