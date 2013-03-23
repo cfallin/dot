@@ -27,6 +27,10 @@ set sort_aux = 'reverse-last-date-received'
 
 set auto_tag = yes     # message commands apply to all tagged messages
 
+# address book
+set query_command = "abook --mutt-query '%s'"
+macro editor ";" \Ct
+
 # keyboard shortcuts
 bind editor <Tab> complete-query
 bind editor ^T complete
