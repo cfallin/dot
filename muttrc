@@ -6,9 +6,7 @@ set imap_user = "cfallin"
 set imap_keepalive = 900
 set mail_check = 60
 set timeout = 60
-set smtp_url = "smtp://cfallin@c1f.net:25/"
-set ssl_starttls = yes
-set ssl_force_tls = yes
+set smtp_url = "smtps://cfallin@c1f.net:465/"
 
 # IMAP folders
 set spoolfile="+INBOX"
@@ -26,10 +24,6 @@ set sort = 'threads'
 set sort_aux = 'reverse-last-date-received'
 
 set auto_tag = yes     # message commands apply to all tagged messages
-
-# address book
-set query_command = "abook --mutt-query '%s'"
-macro editor ";" \Ct
 
 # keyboard shortcuts
 bind editor <Tab> complete-query
