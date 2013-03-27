@@ -6,3 +6,6 @@ Host *
 
 Host atom
   HostName atom.ece.cmu.edu
+
+Host ece031
+  HostName ece031.campus.ece.cmu.local
