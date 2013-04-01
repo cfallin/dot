@@ -11,6 +11,7 @@ alias aoeu="setxkbmap -layout us"
 export PIN=/usr/local/pin
 export PIN_HOME=$PIN
 export PATH=$PIN:$PATH
+export MANPATH=~/local/share/man:$MANPATH
 
 # simple history: don't ignore duplicates (default in newer distros)
 export HISTCONTROL=""
