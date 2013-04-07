@@ -13,6 +13,9 @@ export PIN_HOME=$PIN
 export PATH=$PIN:$PATH
 export MANPATH=~/local/share/man:$MANPATH
 
+export GOROOT=$HOME/local/go
+export PATH=$GOROOT/bin:$PATH
+
 # simple history: don't ignore duplicates (default in newer distros)
 export HISTCONTROL=""
 
