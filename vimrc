@@ -9,7 +9,7 @@ set et
 set bs=2
 set incsearch
 set smartindent
-set modelines=0
+set modelines=1
 set number
 set hidden
 set guioptions-=m " no menubar
