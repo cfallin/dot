@@ -1,0 +1,14 @@
+#!/bin/bash
+
+gnuplot=$1
+if [ $# -lt 1 ]; then
+    echo Usage: plot file.gnuplot
+    exit 1
+fi
+
+eps=`echo $gnuplot | sed -e 's/.gnuplot$/.eps/'`
+
+gnuplot $1 || exit 1
+epstool --copy --bbox $eps $eps.tmp || exit 1
+mv $eps.tmp $eps || exit 1
+epstopdf $eps || exit 1
