@@ -13,8 +13,13 @@ export PIN_HOME=$PIN
 export PATH=$PIN:$PATH
 export MANPATH=~/local/share/man:$MANPATH
 
-export GOROOT=$HOME/local/go
-export PATH=$GOROOT/bin:$PATH
+if [ -d $HOME/local/go ]; then
+    export GOROOT=$HOME/local/go
+    export PATH=$GOROOT/bin:$PATH
+elif [ -d /opt/go ]; then
+    export GOROOT=/opt/go
+    export PATH=$GOROOT/bin:$PATH
+fi
 
 # simple history: don't ignore duplicates (default in newer distros)
 export HISTCONTROL=""
