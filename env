@@ -4,6 +4,7 @@
 alias evine=evince
 
 export PATH=~/bin:~/local/bin:$PATH
+export LD_LIBRARY_PATH=~/local/lib:$LD_LIBRARY_PATH
 
 alias asdf="setxkbmap dvorak"
 alias aoeu="setxkbmap -layout us"
