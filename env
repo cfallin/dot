@@ -19,6 +19,11 @@ if [ -d $HOME/local/go ]; then
 elif [ -d /opt/go ]; then
     export GOROOT=/opt/go
     export PATH=$GOROOT/bin:$PATH
+    export GOPATH=$HOME/go
+fi
+
+if [ -d /opt/rust ]; then
+    export PATH=/opt/rust/bin:$PATH
 fi
 
 # simple history: don't ignore duplicates (default in newer distros)
