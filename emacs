@@ -108,12 +108,12 @@
   (strip-string (shell-command-to-string "hostname")))
 
 
-(add-to-list 'load-path "~/.emacs.d/evil")
-(require 'evil)
-(if nil
-    (evil-mode 1)
-    ; map C-u to page-up, like in Vim, rather than the Emacs command prefix
-    (define-key evil-normal-state-map "\C-u" 'evil-scroll-up))
+;(add-to-list 'load-path "~/.emacs.d/evil")
+;(require 'evil)
+;(if nil
+;    (evil-mode 1)
+;    ; map C-u to page-up, like in Vim, rather than the Emacs command prefix
+;    (define-key evil-normal-state-map "\C-u" 'evil-scroll-up))
 
 (if (fboundp 'color-theme-gnome2)
     (color-theme-gnome2))
