@@ -1,17 +1,15 @@
-* Install Fedora 18
+* Install Fedora 19
 * edit /etc/hostname
 * Edit /etc/yum.repos.d/fedora.conf:
 
-  baseurl=http://carroll.aset.psu.edu/pub/linux/distributions/fedora/...
+  baseurl=http://mirror.pnl.gov/fedora/linux/releases/...
 
-* install rpmfusion (http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-18.noarch.rpm)
+* install rpmfusion (http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-19.noarch.rpm)
 
 * set up Xfce: Ctrl-Alt-T for 'Terminal'
 * yum update
 * yum install VirtualBox-guest kmod-VirtualBox
 * yum groupinstall 'Development Tools'
-* yum install vim gvim emacs screen protobuf-devel protobuf-static glibc-static libstdc++-static zlib-static scons qt4-devel wget java-1.7.0-openjdk-devel scala python3 clojure irssi emacs-color-theme nasm yasm unrar p7zip s3cmd mutt sshpass abook apr-devel keychain enscript
-* yum install openafs-client kmod-openafs
-* copy /etc/krb5.conf from another machine; set up /etc/openafs/ThisCell; remove "-dynroot" from /etc/sysconfig/openafs
+* yum install vim gvim emacs screen protobuf-devel protobuf-static glibc-static libstdc++-static zlib-static scons qt4-devel wget java-1.7.0-openjdk-devel scala python3 clojure irssi emacs-color-theme nasm yasm unrar p7zip s3cmd mutt sshpass abook apr-devel keychain enscript tmux subversion
 * install chromium yum repo; yum install chromium
 * yum install texlive
