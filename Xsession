@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#xmodmap ~/.xmodmap-capslock
+
+which redshift >/dev/null
+if [ $? -eq 0 ]; then
+    # 45 deg N, 123 deg W (approximately Hillsboro, OR)
+    redshift -l 45:-123 &
+fi
+
+exec xfce4-session
