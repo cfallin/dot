@@ -41,6 +41,8 @@ macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index,pager ga "<change-folder>=Archive<tab><enter>" "Go to all mail"
 bind index,pager gg imap-fetch-mail
 
+macro index,pager } "<copy-message>=INBOX.missed-spam<enter><enter><delete-message>"
+
 # local caches
 set header_cache = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
