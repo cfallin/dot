@@ -43,6 +43,8 @@ filetype indent plugin on
 set guifont=Monospace\ 11
 if has("gui_running")
     colorscheme darkblue
+else
+    colorscheme desert
 endif
 
 
