@@ -8,4 +8,6 @@ if [ $? -eq 0 ]; then
     redshift -l 45:-123 &
 fi
 
+xscreensaver &
+
 exec xfce4-session
