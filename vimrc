@@ -44,7 +44,7 @@ set guifont=Monospace\ 11
 if has("gui_running")
     colorscheme darkblue
 else
-    colorscheme desert
+    colorscheme murphy
 endif
 
 
