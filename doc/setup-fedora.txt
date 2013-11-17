@@ -13,3 +13,6 @@
 * yum install vim gvim emacs screen protobuf-devel protobuf-static glibc-static libstdc++-static zlib-static scons qt4-devel wget java-1.7.0-openjdk-devel scala python3 clojure irssi emacs-color-theme nasm yasm unrar p7zip s3cmd mutt sshpass abook apr-devel keychain enscript tmux subversion
 * install chromium yum repo; yum install chromium
 * yum install texlive
+* yum install firefox
+
+* service sshd enable
