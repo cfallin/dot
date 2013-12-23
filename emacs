@@ -143,5 +143,13 @@
 
 (global-set-key "\C-cm" 'un-microsoft-ify)
 
+(add-to-list 'load-path "~/.emacs.d/epl")
+(require 'package)
+(add-to-list 'load-path "~/.emacs.d/dash.el")
+(require 'dash)
+(add-to-list 'load-path "~/.emacs.d/pkg-info.el")
+(require 'pkg-info)
+(add-to-list 'load-path "~/.emacs.d/clojure-mode")
+(require 'clojure-mode)
 (add-to-list 'load-path "~/.emacs.d/cider")
 (require 'cider)

@@ -13,3 +13,15 @@
 [submodule "emacs.d/cider"]
 	path = emacs.d/cider
 	url = https://github.com/clojure-emacs/cider
+[submodule "emacs.d/clojure-mode"]
+	path = emacs.d/clojure-mode
+	url = https://github.com/clojure-emacs/clojure-mode
+[submodule "emacs.d/dash.el"]
+	path = emacs.d/dash.el
+	url = https://github.com/magnars/dash.el
+[submodule "emacs.d/pkg-info.el"]
+	path = emacs.d/pkg-info.el
+	url = https://github.com/lunaryorn/pkg-info.el
+[submodule "emacs.d/epl"]
+	path = emacs.d/epl
+	url = https://github.com/cask/epl
