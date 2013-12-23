@@ -142,3 +142,6 @@
       (set-mark end))))
 
 (global-set-key "\C-cm" 'un-microsoft-ify)
+
+(add-to-list 'load-path "~/.emacs.d/cider")
+(require 'cider)

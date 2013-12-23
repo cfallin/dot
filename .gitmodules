@@ -7,3 +7,9 @@
 [submodule "vim/bundle/vim-coffee-script"]
 	path = vim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script
+[submodule "emacs.d/slime"]
+	path = emacs.d/slime
+	url = https://github.com/technomancy/slime
+[submodule "emacs.d/cider"]
+	path = emacs.d/cider
+	url = https://github.com/clojure-emacs/cider
