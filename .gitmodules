@@ -10,9 +10,6 @@
 [submodule "emacs.d/slime"]
 	path = emacs.d/slime
 	url = https://github.com/technomancy/slime
-[submodule "emacs.d/cider"]
-	path = emacs.d/cider
-	url = https://github.com/clojure-emacs/cider
 [submodule "emacs.d/clojure-mode"]
 	path = emacs.d/clojure-mode
 	url = https://github.com/clojure-emacs/clojure-mode
@@ -25,3 +22,6 @@
 [submodule "emacs.d/epl"]
 	path = emacs.d/epl
 	url = https://github.com/cask/epl
+[submodule "emacs.d/cider"]
+	path = emacs.d/cider
+	url = https://github.com/clojure-emacs/cider
