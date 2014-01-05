@@ -143,6 +143,46 @@
 
 (global-set-key "\C-cm" 'un-microsoft-ify)
 
+(defun unwrap nil
+  (interactive)
+
+  (let ((p (point))
+        (start (point))
+        (end (mark)))
+    (when end
+      ;; ensure start < end, swap if not
+      (when (> start end)
+        (let ((tmp start))
+          (setq start end)
+          (setq end tmp)))
+
+      ;; go to the end of the first line
+      (goto-char start)
+      (end-of-line)
+      ;; for each line until end, delete the newline, insert a space, and
+      ;; move to the next end-of-line.
+      (defun innerloop nil
+        (when (< (point) end)
+          ;; if at end of paragraph, skip to the next para and loop.
+          (when (< (point) (- end 2))
+            (when (and (= (char-after (point)) 10)
+                       (= (char-after (+ (point) 1)) 10))
+              (forward-line 2)
+              (end-of-line)
+              (innerloop)))
+          ;; otherwise, delete the newline, insert a space, go to next
+          ;; EOL, and loop.
+          (delete-char 1)
+          (insert " ")
+          (end-of-line)
+          (innerloop)))
+      (innerloop)
+
+      ;; return point to where it was previously.
+      (goto-char p))))
+
+(global-set-key "\C-cu" 'unwrap)
+
 (add-to-list 'load-path "~/.emacs.d/epl")
 (require 'package)
 (add-to-list 'load-path "~/.emacs.d/dash.el")
