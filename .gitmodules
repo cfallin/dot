@@ -25,3 +25,6 @@
 [submodule "emacs.d/cider"]
 	path = emacs.d/cider
 	url = https://github.com/clojure-emacs/cider
+[submodule "vim/bundle/YouCompleteMe"]
+	path = vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
