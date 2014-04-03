@@ -1,18 +1,32 @@
-* Install Fedora 19
+* Install Fedora 20
 * edit /etc/hostname
 * Edit /etc/yum.repos.d/fedora.conf:
 
   baseurl=http://mirror.pnl.gov/fedora/linux/releases/...
 
-* install rpmfusion (http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-19.noarch.rpm)
+* install rpmfusion (http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-20.noarch.rpm)
 
+* yum groupinstall 'Xfce Desktop'
 * set up Xfce: Ctrl-Alt-T for 'Terminal'
 * yum update
 * yum install VirtualBox-guest kmod-VirtualBox
 * yum groupinstall 'Development Tools'
-* yum install vim gvim emacs screen protobuf-devel protobuf-static glibc-static libstdc++-static zlib-static scons qt4-devel wget java-1.7.0-openjdk-devel scala python3 clojure irssi emacs-color-theme nasm yasm unrar p7zip s3cmd mutt sshpass abook apr-devel keychain enscript tmux subversion
-* install chromium yum repo; yum install chromium
+* yum install vim gvim emacs screen protobuf-devel protobuf-static glibc-static libstdc++-static zlib-static scons qt4-devel wget java-1.7.0-openjdk-devel scala python3 clojure lein irssi emacs-color-theme nasm yasm unrar p7zip s3cmd mutt sshpass abook apr-devel keychain enscript tmux subversion cmake boost-devel clang llvm clang-devel llvm-devel
+* install google-chrome RPM; yum-config-manager --disable google-chrome (if repo cksum issues)
+* yum install thunderbird
 * yum install texlive
-* yum install firefox
 
 * service sshd enable
+
+--- on xap only: ---
+
+* find FS device UUIDs (sudo blkid); add to /etc/fstab
+
+  configure networking: Google DNS; static IP on LAN; DHCP server; iptables NAT
+  rules; IPv4/IPv6 forwarding; DHCPv6 and /60 request; radvd for IPv6 RA on LAN
+
+  - systemctl stop firewalld; systemctl disable firewalld
+  - edit /etc/sysctl.conf, add options for IPv4 and IPv6 forwarding
+  - copy over /etc/sysconfig/iptables (or start with blank); do
+    iptables -t nat -A POSTROUTING -j MASQUERADE; iptables-save > /etc/sysconfig/iptables
+  - yum install dhcp; set up /etc/dhcp/dhcpd.conf for clients
