@@ -11,7 +11,7 @@
 * yum update
 * yum install VirtualBox-guest kmod-VirtualBox
 * yum groupinstall 'Development Tools'
-* yum install vim gvim emacs screen protobuf-devel protobuf-static glibc-static libstdc++-static zlib-static scons qt4-devel wget java-1.7.0-openjdk-devel scala python3 clojure lein irssi emacs-color-theme nasm yasm unrar p7zip s3cmd mutt sshpass abook apr-devel keychain enscript tmux subversion cmake boost-devel clang llvm clang-devel llvm-devel
+* yum install vim gvim emacs screen protobuf-devel protobuf-static glibc-static libstdc++-static zlib-static scons qt4-devel wget java-1.7.0-openjdk-devel scala python3 clojure lein irssi emacs-color-theme nasm yasm unrar p7zip s3cmd mutt sshpass abook apr-devel keychain enscript tmux subversion cmake boost-devel clang llvm clang-devel llvm-devel keepassx
 * install google-chrome RPM; yum-config-manager --disable google-chrome (if repo cksum issues)
 * yum install thunderbird
 * yum install texlive

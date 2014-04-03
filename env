@@ -33,12 +33,9 @@ export HISTCONTROL=""
 # start a VNC server
 alias vnc="vncserver -geometry 3840x1080 -geometry 1920x1080 -geometry 1280x800 -geometry 2560x800 -geometry 1280x720 -geometry 1280x1024"
 
-if [ `hostname` == "xap" ]; then
+if [ `hostname` == "xap.i.c1f.net" ]; then
     # home workstation
-    export PATH=/opt/cisco/anyconnect/bin:$PATH
-    alias expmount="sshfs atom:/afs/ece/usr/cfallin/exp /home/cfallin/exp"
-    alias expumount="fusermount -u /home/cfallin/exp"
-    alias dualhead="xrandr --output HDMI1 --mode 1920x1080 --output HDMI2 --mode 1280x1024 --right-of HDMI1"
+    alias dualhead="xrandr --output HDMI1 --mode 1920x1080 --output HDMI2 --mode 1920x1080 --right-of HDMI1"
     alias singlehead="xrandr --output HDMI1 --mode 1920x1080 --output HDMI2 --off"
 fi
 if [ `hostname` == "atom.ece.cmu.edu" ]; then
