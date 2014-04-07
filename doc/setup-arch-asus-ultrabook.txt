@@ -24,7 +24,7 @@
 - arch-chroot /mnt
 - In the chroot:
   - set up /etc/hostname and /etc/localtime (symlink to /usr/share/zoneinfo/...)
-  - add 'i915 intel_agp intel_gtt' to boot module list in /etc/mkinitcpio.conf
+  - set up /etc/mkinitcpio.conf to include all modules
   - mkinitcpio -p linux
   - pacman -S grub dosfstools efibootmgr
   - grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck --debug
@@ -39,6 +39,7 @@
   - enable NetworkManager (systemctl enable NetworkManager)
   - pacman -S xorg xorg-apps xorg-fonts xf86-video-intel xfce4 slim
   - download https://bitbucket.org/motley/kernel_asus_ux302/raw/32de56f32a016208febc6ff505e534a4c9fe24bf/motley_asus_ux302_custom_kernel.sh
+  - edit script so that it doesn't delete build tree (will need this to build modules against it later)
   - run it, allow it to build kernel and ramdisk
   - edit /etc/default/grub, enable save-last-selected-option (last line, commented out by default)
   - grub-mkconfig -o /boot/grub/grub.cfg
@@ -64,12 +65,12 @@
 
 - Install packages:
 
-    sudo git python scons emacs vim tmux ruby firefox thunderbird pidgin gnome
+    sudo git python scons emacs gvim tmux ruby firefox thunderbird pidgin gnome
     rhythmbox gthumb gimp cmake boost jdk7-openjdk clojure strace valgrind
     nmap vlc sshfs encfs clang llvm s3cmd mutt abook irssi sshpass fuse  nasm
     yasm keychain keepassx enscript subversion qt4 qt5 protobuf zlib acpi
     chromium gnupg redshift rsync openvpn ntp gnome-alsamixer xscreensaver
-    dnsutils traceroute network-manager-applet
+    dnsutils traceroute network-manager-applet rpmextract nodejs docker
 
 - Enable a few services:
 
@@ -83,3 +84,36 @@
     passwd myname
     edit /etc/group, user to 'wheel'
     install sudo, edit /etc/sudoers, allow sudo (if desired)
+
+- Set up home directory encryption:
+
+  - install ecryptfs-utils
+  - log out; log in as root
+  - ecryptfs-migrate-user -u myname
+  - add PAM entries as described in wiki: in /etc/pam.d/system-auth,
+    - after "auth required pam_unix...", add "auth required pam_ecryptfs.so unwrap"
+    - before "password requied pam_unix...", add "password optional pam_ecryptfs.so"
+    - after "session required pam_unix...", add "session optional pam_ecryptfs.so"
+  - log in as myname; check that $HOME is an encrypted mount
+  - remove the renamed unecrypted homedir (/home/myname.$RANDOM_CHARS)
+
+- Add SSD as block cache (using EnhanceIO, a fork of Facebook's flashcache)
+
+  - git clone https://github.com/kcgthb/EnhanceIO (3.14 fix; stec-inc/EnhanceIO if they accept the pull request)
+  - cd EnhanceIO/Driver/enhanceio; make && make install
+  - cd EnhanceIO/CLI; cp eio_cli /sbin/; edit shebang (#!) line to point to python2
+  - modeprobe eio_cli; create /etc/modules-load.d/enhanceio.conf with contents 'enhanceio'
+  - rebuild ramdisk to include module (assumes mkinitcpio.conf includes all modules in ramdisk)
+  - eio_cli
+
+- Backup restore instructions (cfallin-specific)
+
+  - full system image (except /home) is on xap at /big/backup-max
+    - prepared by ~cfallin/bin/backup-system.sh on max
+  - home backup is on xap at ~cfallin/dl/backup-max-home
+    - prepared by ~cfallin/bin/backup-home.sh on max
+  - boot from Arch USB key, partition/format/mount target drive as above
+  - rsync over root filesystem
+  - reinstall grub (to register with UEFI)
+  - reboot, recreate encrypted home setup as above
+  - log in as cfallin; ensure encrypted ~ is mounted; rsync over /home
