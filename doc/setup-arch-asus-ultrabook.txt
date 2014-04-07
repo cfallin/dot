@@ -71,7 +71,7 @@
     yasm keychain keepassx enscript subversion qt4 qt5 protobuf zlib acpi
     chromium gnupg redshift rsync openvpn ntp gnome-alsamixer xscreensaver
     dnsutils traceroute network-manager-applet rpmextract nodejs docker
-    virtualbox virtualbox-host-dkms ghc rust
+    virtualbox virtualbox-host-dkms ghc rust tcl tk
 
 - Enable a few services:
 
