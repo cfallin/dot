@@ -35,7 +35,8 @@
 
 - On next boot:
   - get a network connection (dhcpcd en0... if necessary)
-  - pacman -S base-devel vim tmux wget bc openssh
+  - pacman -S base-devel vim tmux wget bc openssh NetworkManager
+  - enable NetworkManager (systemctl enable NetworkManager)
   - pacman -S xorg xorg-apps xorg-fonts xf86-video-intel xfce4 slim
   - download https://bitbucket.org/motley/kernel_asus_ux302/raw/32de56f32a016208febc6ff505e534a4c9fe24bf/motley_asus_ux302_custom_kernel.sh
   - run it, allow it to build kernel and ramdisk
@@ -53,6 +54,12 @@
         options snd_hda_intel index=0
   - create /etc/modules-load.d/asus-kbd-backlight.conf:
         asus-nb-wmi
+  - add to /etc/polkit-1/rules.d/50-default.rules:
+        polkit.addRule(function(action, subject) {
+            if (action.id.indexOf("org.freedesktop.NetworkManager.") == 0) {
+                return polkit.Result.YES;
+            }
+        });
   - (use GNOME for sound/backlight/etc Fn keys to work!)
 
 - Install packages:
