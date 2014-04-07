@@ -71,11 +71,13 @@
     yasm keychain keepassx enscript subversion qt4 qt5 protobuf zlib acpi
     chromium gnupg redshift rsync openvpn ntp gnome-alsamixer xscreensaver
     dnsutils traceroute network-manager-applet rpmextract nodejs docker
+    virtualbox virtualbox-host-dkms ghc rust
 
 - Enable a few services:
 
   systemctl enable sshd.service; systemctl start sshd.service
   systemctl enable ntpd.service; systemctl start ntpd.service
+  systemctl enable dkms.service; systemctl start dkms.service
 
 - Create user:
 
@@ -104,7 +106,7 @@
   - cd EnhanceIO/CLI; cp eio_cli /sbin/; edit shebang (#!) line to point to python2
   - modeprobe eio_cli; create /etc/modules-load.d/enhanceio.conf with contents 'enhanceio'
   - rebuild ramdisk to include module (assumes mkinitcpio.conf includes all modules in ramdisk)
-  - eio_cli
+  - eio_cli create -d /dev/sda -s /dev/sdb -p lru -c ssdcache
 
 - Backup restore instructions (cfallin-specific)
 
@@ -115,5 +117,6 @@
   - boot from Arch USB key, partition/format/mount target drive as above
   - rsync over root filesystem
   - reinstall grub (to register with UEFI)
-  - reboot, recreate encrypted home setup as above
+  - reboot; recreate EnhanceIO cache setup; reboot again
+  - recreate encrypted home setup as above
   - log in as cfallin; ensure encrypted ~ is mounted; rsync over /home

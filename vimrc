@@ -54,6 +54,8 @@ call pathogen#helptags()
 "let g:miniBufExplorerMoreThanOne=1
 let g:miniBufExplMapWindowNavVim=1
 
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+
 nnoremap <leader>f :bn<cr>
 nnoremap <leader>d :bp<cr>
 
