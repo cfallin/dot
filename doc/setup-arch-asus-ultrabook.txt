@@ -1,0 +1,78 @@
+- Disable secure boot in BIOS (but stay in UEFI mode: CSM disabled)
+- Boot from USB stick of recent Arch Linux image (I used 2014.04.01)
+  - on Asus UX302LA, can get to boot override menu by hitting Delete on
+    startup.
+  - IMPORTANT: need to add 'nomodeset i915.modeset=0' to end of kernel
+    command line. Hit 'e' to edit the command line for the default option
+    at the GRUB menu then F10 to boot.
+- use gdisk on /dev/sda: remove all partitions, then create:
+  - 500M Linux (type 8300) for /boot
+  - 500M FAT32 (type ef00) for EFI system partition (ESP)
+  - 50G Linux for /
+  - 16G Linux for swap
+  - remaining for /home
+- Format everything:
+  - mkfs.ext2 /dev/sda1
+  - mkfs.fat -F32 /dev/sda2
+  - mkfs.ext4 /dev/sda3
+  - mkswap /dev/sda4
+  - mkfs.btrfs /dev/sda5
+- Mount everything under /mnt
+- ensure network connectivity (wifi-menu for wireless)
+- pacstrap /mnt base
+- genfstab -p /mnt >> /mnt/etc/fstab
+- arch-chroot /mnt
+- In the chroot:
+  - set up /etc/hostname and /etc/localtime (symlink to /usr/share/zoneinfo/...)
+  - add 'i915 intel_agp intel_gtt' to boot module list in /etc/mkinitcpio.conf
+  - mkinitcpio -p linux
+  - pacman -S grub dosfstools efibootmgr
+  - grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck --debug
+  - edit /etc/default/grub and add "nomodeset i915.modeset=0 acpi_osi=" to end of the GRUB_CMDLINE_LINUX value.
+  - grub-mkconfig -o /boot/grub/grub.cfg
+  - passwd (set root password)
+- leave chroot, umount -R /mnt, reboot, ensure BIOS boots from hard drive ('GRUB' EFI entry)
+
+- On next boot:
+  - get a network connection (dhcpcd en0... if necessary)
+  - pacman -S base-devel vim tmux wget bc openssh
+  - pacman -S xorg xorg-apps xorg-fonts xf86-video-intel xfce4 slim
+  - download https://bitbucket.org/motley/kernel_asus_ux302/raw/32de56f32a016208febc6ff505e534a4c9fe24bf/motley_asus_ux302_custom_kernel.sh
+  - run it, allow it to build kernel and ramdisk
+  - edit /etc/default/grub, enable save-last-selected-option (last line, commented out by default)
+  - grub-mkconfig -o /boot/grub/grub.cfg
+  - edit the new stanza for the 'motley' kernel: it's missing the
+    initrd command by default, uses /dev/sdX as a root (copy the UUID
+    from the main Arch kernel command line instead), and remove the
+    'nomodeset i915.modeset=0' options.
+  - reboot into the new kernel.
+  - enable slimd: systemctl enable slimd.service
+  - add to /etc/modprobe.d/alsa.conf:
+        options snd_hda_intel enable=0,1
+        options snd slots=snd_hda_intel 
+        options snd_hda_intel index=0
+  - create /etc/modules-load.d/asus-kbd-backlight.conf:
+        asus-nb-wmi
+  - (use GNOME for sound/backlight/etc Fn keys to work!)
+
+- Install packages:
+
+    sudo git python scons emacs vim tmux ruby firefox thunderbird pidgin gnome
+    rhythmbox gthumb gimp cmake boost jdk7-openjdk clojure strace valgrind
+    nmap vlc sshfs encfs clang llvm s3cmd mutt abook irssi sshpass fuse  nasm
+    yasm keychain keepassx enscript subversion qt4 qt5 protobuf zlib acpi
+    chromium gnupg redshift rsync openvpn ntp gnome-alsamixer xscreensaver
+    dnsutils traceroute network-manager-applet
+
+- Enable a few services:
+
+  systemctl enable sshd.service; systemctl start sshd.service
+  systemctl enable ntpd.service; systemctl start ntpd.service
+
+- Create user:
+
+    edit /etc/login.defs, add 'CREATE_HOME yes'
+    useradd myname
+    passwd myname
+    edit /etc/group, user to 'wheel'
+    install sudo, edit /etc/sudoers, allow sudo (if desired)
