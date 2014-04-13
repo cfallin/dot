@@ -65,13 +65,23 @@
 
 - Install packages:
 
-    sudo git python scons emacs gvim tmux ruby firefox thunderbird pidgin gnome
-    rhythmbox gthumb gimp cmake boost jdk7-openjdk clojure strace valgrind
-    nmap vlc sshfs encfs clang llvm s3cmd mutt abook irssi sshpass fuse  nasm
-    yasm keychain keepassx enscript subversion qt4 qt5 protobuf zlib acpi
-    chromium gnupg redshift rsync openvpn ntp gnome-alsamixer xscreensaver
-    dnsutils traceroute network-manager-applet rpmextract nodejs docker
-    virtualbox virtualbox-host-dkms ghc rust tcl tk
+    [enable multilib in pacman.conf]
+    [add archlinuxfr repo to pacman.conf -- google yaourt]
+
+    - from pacman:
+
+        sudo git python scons emacs gvim tmux ruby firefox thunderbird pidgin gnome
+        rhythmbox gthumb gimp cmake boost jdk7-openjdk clojure strace valgrind
+        nmap vlc sshfs encfs clang llvm s3cmd mutt abook irssi sshpass fuse  nasm
+        yasm keychain keepassx enscript subversion qt4 qt5 protobuf zlib acpi
+        chromium gnupg redshift rsync openvpn ntp gnome-alsamixer xscreensaver
+        dnsutils traceroute network-manager-applet rpmextract nodejs docker
+        virtualbox virtualbox-host-dkms ghc rust tcl tk qemu yaourt alsa-utils
+        lib32-libpulse gdb cups
+
+    - from AUR (yaourt):
+
+        jitsi midori-flash skype
 
 - Enable a few services:
 

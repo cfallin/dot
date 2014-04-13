@@ -193,3 +193,6 @@
 (require 'clojure-mode)
 (add-to-list 'load-path "~/.emacs.d/cider")
 (require 'cider)
+
+(menu-bar-mode 0)
+(tool-bar-mode 0)
