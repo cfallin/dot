@@ -77,7 +77,8 @@
         chromium gnupg redshift rsync openvpn ntp gnome-alsamixer xscreensaver
         dnsutils traceroute network-manager-applet rpmextract nodejs docker
         virtualbox virtualbox-host-dkms ghc rust tcl tk qemu yaourt alsa-utils
-        lib32-libpulse gdb cups
+        lib32-libpulse gdb cups inkscape libreoffice texlive-most ack
+        foomatic-db ghostscript gsfonts a2ps
 
     - from AUR (yaourt):
 
