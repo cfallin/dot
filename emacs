@@ -183,6 +183,31 @@
 
 (global-set-key "\C-cu" 'unwrap)
 
+(defun open-urls nil
+  (interactive)
+
+  (let ((selection (buffer-substring-no-properties (region-beginning) (region-end))))
+    (if (= (length selection) 0)
+        (message "no text selected!")
+        (let ((parts (split-string selection)))
+          (message "selection: ")
+          (message selection)
+          (defun open-one-url (url)
+            (message "opening  url: ")
+            (message url)
+            (start-process "open-url"
+                           (get-buffer-create "*open-url-messages*")
+                           "/usr/bin/xdg-open"
+                           url))
+          (defun open-list (l)
+            (if l
+                (let ((url (car l))
+                      (rem (cdr l)))
+                  (open-one-url url)
+                  (open-list rem))
+              nil))
+          (open-list parts)))))
+
 (add-to-list 'load-path "~/.emacs.d/epl")
 (require 'package)
 (add-to-list 'load-path "~/.emacs.d/dash.el")
