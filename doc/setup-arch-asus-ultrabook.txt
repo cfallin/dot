@@ -131,3 +131,17 @@
   - reboot; recreate EnhanceIO cache setup; reboot again
   - recreate encrypted home setup as above
   - log in as cfallin; ensure encrypted ~ is mounted; rsync over /home
+
+- Samba server/client setup:
+
+  - Set up a Kerberos 5 realm:
+    - install krb5 on Fedora desktop. Create kerberos database and user
+      principals. Add host principal to /etc/krb5.keytab.
+    - install krb5 on laptop. Set default realm. Comment out credentials cache
+      filename override -- SMB client wants it in the default location
+      /tmp/krb5cc_... . Ensure kinit and GSSAPI-enabled SSH work.
+    - Install Samba on desktop. Set realm, security = ADS, kerberos method =
+      system keytab, password server = <desktop>, passdb backend = tdbsam
+    - Create cifs/<desktop> principal and add to keytab with rc4-hmac:normal
+      encryption type
+    - Test with smbclient -k -L //<fullname> after kinit.
