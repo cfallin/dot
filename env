@@ -52,3 +52,5 @@ which keychain 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then
     eval `keychain --eval --agents ssh,gpg 2>/dev/null -q`
 fi
+
+alias ro='emacs Dropbox/Documents/notes/research.org &'

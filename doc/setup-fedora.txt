@@ -32,3 +32,15 @@
   - yum install iptables-services
   - systemctl enable iptables; systemctl start iptables
   - yum install dhcp; set up /etc/dhcp/dhcpd.conf for clients
+
+* set up network bridge device:
+
+  - disable NetworkManager; set NM_MANAGED to 'no' in ifcfg-* files
+  - copy ifcfg-p2p1 (or whatever) to ifcfg-br0; change appropriate variables (type = Bridge)
+
+* set up VMs
+  - install libvirt-daemon-kvm
+  - enable libvirtd and libvirt-guests services
+  - add --listen to args in /etc/sysconfig/libvirtd
+  - /etc/libvirt/libvirtd.conf: disable tls, enable tcp, local IP only; set up SASL
+
