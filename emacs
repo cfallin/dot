@@ -21,7 +21,7 @@
 ;;(if (fboundp 'cua-mode)
 ;; (cua-mode 1))
 
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (autoload 'verilog-mode "verilog-mode" "Major mode for editing Verilog." t)
 
