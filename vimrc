@@ -54,9 +54,15 @@ call pathogen#helptags()
 "let g:miniBufExplorerMoreThanOne=1
 let g:miniBufExplMapWindowNavVim=1
 
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+
 nnoremap <leader>f :bn<cr>
 nnoremap <leader>d :bp<cr>
+
+nnoremap <leader>ba :BufExplorer<cr>
 
 au BufNewFile,BufRead *.rs set filetype=rust
 au BufNewFile,BufRead *.rktl set filetype=scheme
 au BufNewFile,BufRead *.go set filetype=go
+
+imap jj <Esc>

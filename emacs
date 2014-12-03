@@ -21,7 +21,7 @@
 ;;(if (fboundp 'cua-mode)
 ;; (cua-mode 1))
 
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (autoload 'verilog-mode "verilog-mode" "Major mode for editing Verilog." t)
 
@@ -87,7 +87,7 @@
 (global-set-key [f5] 'word-count)
 
 ;(set-frame-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
-(add-to-list 'default-frame-alist '(font . "-unknown-DejaVu Sans Mono-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
+(add-to-list 'default-frame-alist '(font . "-unknown-DejaVu Sans Mono-normal-normal-normal-*-16-*-*-*-m-0-iso10646-1"))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -218,3 +218,6 @@
 (require 'clojure-mode)
 (add-to-list 'load-path "~/.emacs.d/cider")
 (require 'cider)
+
+(menu-bar-mode 0)
+(tool-bar-mode 0)
