@@ -24,9 +24,11 @@ elif [ -d /opt/go ]; then
 fi
 
 gembase=~/.gem/ruby
-gemdir=$gembase/`ls $gembase | sort -rn | head -n 1`
-if [ -d "$gemdir" ]; then
-    export PATH=$gemdir/bin:$PATH
+if [ -d $gembase ]; then
+    gemdir=$gembase/`ls $gembase | sort -rn | head -n 1`
+    if [ -d "$gemdir" ]; then
+        export PATH=$gemdir/bin:$PATH
+    fi
 fi
 
 if [ -d /opt/rust ]; then
