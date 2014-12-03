@@ -35,7 +35,7 @@ alias vnc="vncserver -geometry 3840x1080 -geometry 1920x1080 -geometry 1280x800 
 
 if [ `hostname` == "xap.i.c1f.net" ]; then
     # home workstation
-    alias dualhead="xrandr --output HDMI1 --mode 1920x1080 --output HDMI2 --mode 1920x1080 --right-of HDMI1"
+    alias dualhead="xrandr --output HDMI1 --mode 1920x1080 --output HDMI2 --mode 1920x1080 --left-of HDMI1"
     alias singlehead="xrandr --output HDMI1 --mode 1920x1080 --output HDMI2 --off"
 fi
 if [ `hostname` == "atom.ece.cmu.edu" ]; then
@@ -52,3 +52,5 @@ which keychain 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then
     eval `keychain --eval --agents ssh,gpg 2>/dev/null -q`
 fi
+
+alias ro="emacs ~/Dropbox/Documents/notes/research.org &"

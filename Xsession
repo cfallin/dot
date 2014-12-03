@@ -5,7 +5,9 @@
 which redshift >/dev/null
 if [ $? -eq 0 ]; then
     # 45 deg N, 123 deg W (approximately Hillsboro, OR)
-    redshift -l 45:-123 &
+    #redshift -l 45:-123 &
+    # 37.399 deg N, 122.093 deg W (Mountain View, CA)
+    redshift -l 37:-122 &
 fi
 
 xscreensaver &
