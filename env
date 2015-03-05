@@ -35,6 +35,10 @@ if [ -d /opt/rust ]; then
     export PATH=/opt/rust/bin:$PATH
 fi
 
+if [ -d /opt/scala ]; then
+    export PATH=/opt/scala/bin:$PATH
+fi
+
 # simple history: don't ignore duplicates (default in newer distros)
 export HISTCONTROL=""
 
