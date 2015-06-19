@@ -97,3 +97,5 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 . ~/.bash_local
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

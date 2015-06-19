@@ -1,0 +1,7 @@
+Scala:
+- Install maven (via package manager)
+- Install command-line scala (via package manager)
+- Install eclipse (via package manager)
+- Install eclipse maven+scala plugin (which will pull in others as deps):
+  - Help -> Install New Software
+  - update site: http://alchim31.free.fr/m2e-scala/update-site/

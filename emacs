@@ -75,6 +75,8 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-agenda-files '("~/Documents/orgmode/work.org" "~/Documents/orgmode/personal.org"))
 (setq org-log-done 'time)
+(setq org-file-apps
+      '(("\\.pdf\\'" . "evince %s")))
 
 (global-set-key [f1] 'iswitchb-buffer)
 (global-set-key [f2] 'other-window)
@@ -208,16 +210,21 @@
               nil))
           (open-list parts)))))
 
-(add-to-list 'load-path "~/.emacs.d/epl")
-(require 'package)
-(add-to-list 'load-path "~/.emacs.d/dash.el")
-(require 'dash)
-(add-to-list 'load-path "~/.emacs.d/pkg-info.el")
-(require 'pkg-info)
-(add-to-list 'load-path "~/.emacs.d/clojure-mode")
-(require 'clojure-mode)
-(add-to-list 'load-path "~/.emacs.d/cider")
-(require 'cider)
+;(add-to-list 'load-path "~/.emacs.d/epl")
+;(require 'package)
+;(add-to-list 'load-path "~/.emacs.d/dash.el")
+;(require 'dash)
+;(add-to-list 'load-path "~/.emacs.d/pkg-info.el")
+;(require 'pkg-info)
+;(add-to-list 'load-path "~/.emacs.d/clojure-mode")
+;(require 'clojure-mode)
+;(add-to-list 'load-path "~/.emacs.d/cider")
+;(require 'cider)
+
+(require 'openwith)
+(setq openwith-associations
+      '(("\\.pdf\\'" "evince" (file))))
+(openwith-mode t)
 
 (menu-bar-mode 0)
 (tool-bar-mode 0)

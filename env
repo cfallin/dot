@@ -39,6 +39,10 @@ if [ -d /opt/scala ]; then
     export PATH=/opt/scala/bin:$PATH
 fi
 
+if [ -d /opt/kotlinc ]; then
+    export PATH=/opt/kotlinc/bin:$PATH
+fi
+
 # simple history: don't ignore duplicates (default in newer distros)
 export HISTCONTROL=""
 
