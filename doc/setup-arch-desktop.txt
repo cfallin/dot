@@ -1,0 +1,81 @@
+- Boot from USB stick of recent Arch Linux image (I used 2015.06.01)
+- use fdisk on /dev/sda: remove all partitions, then create:
+  - 500M Linux (type 83) for /boot
+  - 220G Linux (type 83) for /
+  - 3G Linux swap (type 82) for swap
+  - (and leave other disks alone)
+- Format everything:
+  - mkfs.ext2 /dev/sda1
+  - mkfs.ext4 /dev/sda2
+  - mkswap /dev/sda3
+- Mount everything under /mnt
+- ensure network connectivity (dhclient enp0s2)
+- pacstrap /mnt base
+- genfstab -p /mnt >> /mnt/etc/fstab
+- arch-chroot /mnt
+- In the chroot:
+  - set up /etc/hostname and /etc/localtime (symlink to /usr/share/zoneinfo/...)
+  - pacman -S grub dosfstools
+  - grub-install /dev/sda
+  - passwd (set root password)
+- leave chroot, umount -R /mnt, reboot, ensure BIOS boots from hard drive
+
+- On next boot:
+  - blkid to see UUIDs; add disks at mounts (/home, /big, /backup)
+  - get a network connection (dhcpcd en0... if necessary)
+  - pacman -S base-devel vim tmux wget bc openssh NetworkManager
+  - set up systemd-networkd
+  - pacman -S xorg xorg-apps xorg-fonts xf86-video-intel xfce4 slim
+  - enable slimd: systemctl enable slimd.service
+
+- Install packages:
+
+    [enable multilib in pacman.conf]
+    [add archlinuxfr repo to pacman.conf -- google yaourt]
+
+    - from pacman:
+
+        sudo git python scons emacs gvim tmux ruby firefox thunderbird pidgin gnome
+        rhythmbox gthumb gimp cmake boost jdk7-openjdk clojure strace valgrind
+        nmap vlc sshfs encfs clang llvm s3cmd mutt abook irssi sshpass fuse  nasm
+        yasm keychain keepassx enscript subversion qt4 qt5 protobuf zlib acpi
+        chromium gnupg redshift rsync openvpn ntp gnome-alsamixer xscreensaver
+        dnsutils traceroute network-manager-applet rpmextract nodejs docker
+        virtualbox virtualbox-host-dkms ghc rust tcl tk qemu yaourt alsa-utils
+        lib32-libpulse gdb cups inkscape libreoffice texlive-most ack
+        foomatic-db ghostscript gsfonts a2ps npm duplicity
+
+    - from AUR (yaourt):
+
+        jitsi midori-flash skype
+
+- Enable a few services (pacman -S ntp dkms cronie):
+
+  systemctl enable sshd.service; systemctl start sshd.service
+  systemctl enable ntpd.service; systemctl start ntpd.service
+  systemctl enable dkms.service; systemctl start dkms.service
+  systemctl enable cronie.service; systemctl start cronie.service
+
+- Ensure /etc/cron.daily/backup exists and is executable.
+
+- Create user:
+
+    groupadd -g 1000 cfallin
+    useradd -g 1000 -u 1000 cfallin
+    passwd cfallin
+    edit /etc/group, add cfallin to 'wheel'
+    install sudo, edit /etc/sudoers, allow sudo (if desired)
+
+- Samba server/client setup:
+
+  - Set up a Kerberos 5 realm:
+    - install krb5 on Fedora desktop. Create kerberos database and user
+      principals. Add host principal to /etc/krb5.keytab.
+    - install krb5 on laptop. Set default realm. Comment out credentials cache
+      filename override -- SMB client wants it in the default location
+      /tmp/krb5cc_... . Ensure kinit and GSSAPI-enabled SSH work.
+    - Install Samba on desktop. Set realm, security = ADS, kerberos method =
+      system keytab, password server = <desktop>, passdb backend = tdbsam
+    - Create cifs/<desktop> principal and add to keytab with rc4-hmac:normal
+      encryption type
+    - Test with smbclient -k -L //<fullname> after kinit.

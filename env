@@ -4,7 +4,7 @@
 alias evine=evince
 
 export PATH=~/bin:~/local/bin:$PATH
-export LD_LIBRARY_PATH=~/local/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=~/local/lib:/usr/local/lib:$LD_LIBRARY_PATH
 
 alias asdf="setxkbmap dvorak"
 alias aoeu="setxkbmap -layout us"
@@ -29,18 +29,6 @@ if [ -d $gembase ]; then
     if [ -d "$gemdir" ]; then
         export PATH=$gemdir/bin:$PATH
     fi
-fi
-
-if [ -d /opt/rust ]; then
-    export PATH=/opt/rust/bin:$PATH
-fi
-
-if [ -d /opt/scala ]; then
-    export PATH=/opt/scala/bin:$PATH
-fi
-
-if [ -d /opt/kotlinc ]; then
-    export PATH=/opt/kotlinc/bin:$PATH
 fi
 
 # simple history: don't ignore duplicates (default in newer distros)
