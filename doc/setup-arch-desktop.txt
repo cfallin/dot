@@ -43,7 +43,8 @@
         dnsutils traceroute network-manager-applet rpmextract nodejs docker
         virtualbox virtualbox-host-dkms ghc rust tcl tk qemu yaourt alsa-utils
         lib32-libpulse gdb cups inkscape libreoffice texlive-most ack
-        foomatic-db ghostscript gsfonts a2ps npm duplicity
+        foomatic-db ghostscript gsfonts a2ps npm duplicity evince
+        links irssi rubyripper ruby-gtk2 unzip
 
     - from AUR (yaourt):
 
