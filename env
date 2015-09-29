@@ -58,3 +58,7 @@ if [ $? -eq 0 ]; then
 fi
 
 alias ro="emacs ~/Dropbox/Documents/notes/research.org &"
+
+if [ -d /opt/llvm ]; then
+    export PATH=/opt/llvm/bin:$PATH
+fi
