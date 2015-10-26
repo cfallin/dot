@@ -66,3 +66,5 @@ au BufNewFile,BufRead *.rktl set filetype=scheme
 au BufNewFile,BufRead *.go set filetype=go
 
 imap jj <Esc>
+
+map <C-i> :%!clang-format<cr>
