@@ -59,6 +59,8 @@ fi
 
 alias ro="emacs ~/Dropbox/Documents/notes/research.org &"
 
-if [ -d /opt/llvm ]; then
-    export PATH=/opt/llvm/bin:$PATH
-fi
+#if [ -d /opt/llvm ]; then
+#    export PATH=/opt/llvm/bin:$PATH
+#fi
+
+export PATH=$(ruby -e "print Gem.user_dir"):$PATH
