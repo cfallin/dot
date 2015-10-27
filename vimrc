@@ -67,4 +67,8 @@ au BufNewFile,BufRead *.go set filetype=go
 
 imap jj <Esc>
 
-map <C-i> :%!clang-format<cr>
+function ClangFormatFile()
+    let l:lines="all"
+    pyf /usr/share/clang/clang-format.py
+endfunction
+map <C-i> :call ClangFormatFile()<cr>
