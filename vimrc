@@ -40,7 +40,7 @@ filetype indent plugin on
 "  fonts and colors
 " -------------------------
 
-set guifont=Monospace\ 11
+set guifont=Monospace\ 10
 if has("gui_running")
     colorscheme darkblue
 else
