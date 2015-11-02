@@ -80,5 +80,6 @@ $gvim_height_end -= 32;
 # Resize gvim window.
 my $gvim_width = $gvim_width_end - $gvim_width_start;
 my $gvim_height = $gvim_height_end - $gvim_height_start;
+system("wmctrl -i -r $wid -b remove,maximized_horiz,maximized_vert");
 system("wmctrl -i -r $wid -e 0,$gvim_width_start,$gvim_height_start," .
        "$gvim_width,$gvim_height");
