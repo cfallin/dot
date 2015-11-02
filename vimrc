@@ -69,6 +69,10 @@ imap jj <Esc>
 
 function ClangFormatFile()
     let l:lines="all"
-    pyf /usr/share/clang/clang-format.py
+    if filereadable("/usr/share/clang/clang-format.py")
+        pyf /usr/share/clang/clang-format.py
+    elseif filereadable("/usr/share/vim/addons/syntax/clang-format-3.7.py")
+        pyf /usr/share/vim/addons/syntax/clang-format-3.7.py
+    endif
 endfunction
 map <C-i> :call ClangFormatFile()<cr>
