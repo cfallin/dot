@@ -1,0 +1,84 @@
+#!/usr/bin/env perl
+#
+# maxgvim: A small script to create a gvim window that is maximized across
+# multiple monitors.
+#
+# Requires wmctrl(1) in order to examine screen size and window positions and
+# to resize the gvim window.
+#
+# Copyright (c) 2015, Chris Fallin <cfallin@c1f.net>. Released under MIT
+# license.
+
+# Determine the screen size.
+my $screen_width = undef, $screen_height = undef;
+my $wmctrl_handle = undef;
+open($wmctrl_handle, "wmctrl -d |");
+while(<$wmctrl_handle>) {
+    chomp;
+    if (/.*\* DG: (\d+)x(\d+).*/) {
+        $screen_width = int($1);
+        $screen_height = int($2);
+        last;
+    }
+}
+close $wmctrl_handle;
+
+# Examine all current windows to find any panel-like windows: full width but <
+# 100 px high. Exclude these ranges from the full screen height.
+my $gvim_width_start = 0;
+my $gvim_width_end = $screen_width;
+my $gvim_height_start = 0;
+my $gvim_height_end = $screen_height;
+open($wmctrl_handle, "wmctrl -l -G |");
+while (<$wmctrl_handle>) {
+    chomp;
+    if (/(0x\S+)\s+\S+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+.*/) {
+        my $list_wid = $1;
+        my $list_width_start = int($2), $list_width_end = int($2) + int($4);
+        my $list_height_start = int($3), $list_height_end = int($3) + int($5);
+
+        if ($list_width_start == 0 and $list_width_end == $screen_width and
+            ($list_height_end - $list_height_start) <= 100) {
+            # It appears to be a panel. We may need to reduce our "full screen"
+            # rectangle to avoid overlap.
+
+            my $start_in_panel = ($gvim_height_start >= $list_height_start and
+                                  $gvim_height_start < $list_height_end);
+            my $end_in_panel = ($gvim_height_end >= $list_height_start and
+                                $gvim_height_end < $list_height_end);
+
+            if ($start_in_panel and not $end_in_panel) {
+                $gvim_height_start = $list_height_end;
+            } elsif ($end_in_panel and not $start_in_panel) {
+                $gvim_height_end = $list_height_start;
+            } else {
+                die "Could not find a region between panels.";
+            }
+        }
+    }
+}
+
+# Start gvim and get its window ID.
+my $args = join(" ", @ARGV);
+my $gvim_handle = undef;
+open($gvim_handle, "gvim --echo-wid $args |")
+    || die "Could not start gvim: $!";
+
+my $wid = undef;
+while(<$gvim_handle>) {
+    chomp;
+    if (/WID: (.*)/) {
+        $wid = $1;
+        last;
+    }
+}
+close $gvim_handle;
+
+# subtract an arbitrary buffer from height to account for WM decorations.
+$gvim_height_end -= 32;
+
+# Resize gvim window.
+my $gvim_width = $gvim_width_end - $gvim_width_start;
+my $gvim_height = $gvim_height_end - $gvim_height_start;
+system("wmctrl -i -r $wid -e 0,$gvim_width_start,$gvim_height_start," .
+       "$gvim_width,$gvim_height");
