@@ -64,3 +64,5 @@ alias ro="emacs ~/Dropbox/Documents/notes/research.org &"
 #fi
 
 export PATH=$(ruby -e "print Gem.user_dir"):$PATH
+
+export no_kdestroy=1
