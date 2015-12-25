@@ -1,0 +1,12 @@
+#!/bin/bash
+
+input=$1
+
+for x in $input
+do
+    echo Processing $x ...
+    basename=`basename $x .cc`
+    basename=`basename $basename .cpp`
+    output=$basename.html
+    enscript --line-numbers -Ecpp --color -w html $x -o $output
+done

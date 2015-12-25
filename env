@@ -64,7 +64,10 @@ alias ro="emacs ~/Dropbox/Documents/notes/research.org &"
 #fi
 
 export PATH=$(ruby -e "print Gem.user_dir"):$PATH
+
 export PATH=~/.rakudobrew/bin:$PATH
 if [ -x ~/.rakudobrew/bin/rakudobrew ]; then
     eval "$(~/.rakudobrew/bin/rakudobrew init -)"
 fi
+
+export no_kdestroy=1

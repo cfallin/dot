@@ -3,3 +3,5 @@
 	email = cfallin@c1f.net
 [push]
 	default = matching
+[credential]
+	helper = store

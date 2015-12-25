@@ -9,3 +9,7 @@ Host atom
 
 Host ece031
   HostName ece031.campus.ece.cmu.local
+
+Host bigdata
+  HostName bigdata.intel-research.net
+  IdentityFile ~/.ssh/id_opencirrus
