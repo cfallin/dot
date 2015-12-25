@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 directory [build_type]" > /dev/stderr
+    echo "  build_type: Debug, Release, RelWithDebInfo (default: Debug)" > /dev/stderr
+    exit 1
+fi
+
+dir=$1
+build_type=$2
+
+if [ ! -d $dir ]; then
+    echo "Directory $dir does not exist or is not a directory." > /dev/stderr
+    exit 1
+fi
+if [ "$build_type" == "" ]; then
+    build_type=Debug
+fi
+    
+cmake $dir -DCMAKE_BUILD_TYPE=$build_type -DCMAKE_EXPORT_COMPILE_COMMANDS="YES"
