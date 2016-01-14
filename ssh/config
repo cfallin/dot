@@ -1,5 +1,6 @@
 CheckHostIP no
 ServerAliveInterval 60
+UseRoaming no
 
 Host *
   GSSAPIAuthentication no
