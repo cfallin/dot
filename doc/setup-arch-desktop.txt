@@ -27,6 +27,10 @@
   - set up systemd-networkd
   - pacman -S xorg xorg-apps xorg-fonts xf86-video-intel xfce4 slim
   - enable slimd: systemctl enable slimd.service
+  - generate locale and set it:
+    - edit /etc/locale.gen and uncomment line: "en_US.UTF-8 UTF-8"
+    - run locale-gen
+    - edit /etc/locale.conf and ensure file is: "LANG=en_US.UTF-8"
 
 - Install packages:
 

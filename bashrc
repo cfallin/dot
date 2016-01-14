@@ -109,3 +109,5 @@ PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `keychain --eval`
 fi
+
+LANG=en_US.UTF-8
