@@ -84,3 +84,10 @@
     - Create cifs/<desktop> principal and add to keytab with rc4-hmac:normal
       encryption type
     - Test with smbclient -k -L //<fullname> after kinit.
+
+- Steam setup:
+
+  - pacman -S steam
+  - install `steam-fonts` AUR package (git clone, pkgbuild -sri)
+  - ln -s /usr/lib32/ld-linux.so.2 /lib/
+  - steam
