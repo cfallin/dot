@@ -71,3 +71,5 @@ if [ -x ~/.rakudobrew/bin/rakudobrew ]; then
 fi
 
 export no_kdestroy=1
+
+alias ls="ls --quoting-style=literal --color=auto"
