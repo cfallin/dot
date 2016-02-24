@@ -20,8 +20,8 @@ if [ -d $HOME/local/go ]; then
 elif [ -d /opt/go ]; then
     export GOROOT=/opt/go
     export PATH=$GOROOT/bin:$PATH
-    export GOPATH=$HOME/go
 fi
+export GOPATH=$HOME/go
 
 gembase=~/.gem/ruby
 if [ -d $gembase ]; then
