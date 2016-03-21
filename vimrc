@@ -75,4 +75,16 @@ function ClangFormatFile()
         pyf /usr/share/vim/addons/syntax/clang-format-3.7.py
     endif
 endfunction
-map <C-i> :call ClangFormatFile()<cr>
+au BufNewFile,BufRead *.cc map <C-i> :call ClangFormatFile()<cr>
+au BufNewFile,BufRead *.cpp map <C-i> :call ClangFormatFile()<cr>
+au BufNewFile,BufRead *.c map <C-i> :call ClangFormatFile()<cr>
+au BufNewFile,BufRead *.C map <C-i> :call ClangFormatFile()<cr>
+au BufNewFile,BufRead *.h map <C-i> :call ClangFormatFile()<cr>
+au BufNewFile,BufRead *.hpp map <C-i> :call ClangFormatFile()<cr>
+
+function RustFormatFile()
+    %!rustfmt
+endfunction
+au BufNewFile,BufRead *.rs map <C-i> :call RustFormatFile()<cr>
+
+let g:ycm_rust_src_path = '/home/cfallin/build/rust'
