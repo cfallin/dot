@@ -20,4 +20,10 @@ fi
 
 xscreensaver &
 
-exec xfce4-session
+if grep -q Ubuntu < /etc/issue; then
+    # xfce4 bug in Ubuntu 14.04 LTS: keyboard shortcuts stop working randomly.
+    # Use LXDE on CMU workstation for now.
+    exec startlxde
+else
+    exec xfce4-session
+fi
