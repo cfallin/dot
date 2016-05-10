@@ -2,7 +2,7 @@
 	name = Chris Fallin
 	email = cfallin@c1f.net
 [push]
-	default = matching
+	default = current
 [credential]
 	helper = store
 [http]
