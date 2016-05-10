@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for x in *.wav; do
+    echo ------
+    echo $x
+    echo ------
+
+    outfile=`echo "$x" | sed -e 's/\\.wav\$/.m4a/'`
+
+    ffmpeg -i "$x" -c:a aac -b:a 160k "$outfile"
+done

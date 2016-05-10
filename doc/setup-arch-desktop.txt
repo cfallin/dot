@@ -63,6 +63,96 @@
 
 - Ensure /etc/cron.daily/backup exists and is executable.
 
+- Setup as network gateway:
+  - /etc/systemd/network/inet.network:
+        [Match]
+        Name=enp4s1
+
+        [Network]
+        DNS=8.8.8.8
+        DNS=8.8.4.4
+
+        [Network]
+        DHCP=ipv4
+  - /etc/systemd/network/wired.networK:
+        [Match]
+        Name=enp2s0
+      
+        [Network]
+        DNS=8.8.8.8
+        DNS=8.8.4.4
+      
+        [Address]
+        Address=10.1.1.1/24
+    - /etc/sysctl.conf:
+        net.ipv4.ip_forward=1
+        net.ipv6.conf.default.forwarding=1
+        net.ipv6.conf.all.forwarding=1
+        net.ipv6.conf.all.accept_ra=0
+        net.ipv6.conf.all.accept_ra_defrtr=0
+    - Set up iptables NAT:
+        $ iptables -t nat -A POSTROUTING -o enp4s1 -j MASQUERADE
+        $ iptables-save > /etc/iptables/iptables.conf
+        $ systemctl enable iptables
+        $ systemctl start iptables
+    - /etc/dhcpd.conf:
+        option domain-name "i.c1f.net";
+        option domain-name-servers 8.8.8.8, 8.8.4.4;
+
+        not authoritative;
+
+        subnet 10.1.1.0 netmask 255.255.255.0 {
+            authoritative;
+            range 10.1.1.128 10.1.1.192;
+            option routers 10.1.1.1;
+            default-lease-time 600;
+            max-lease-time 7200;
+        }
+    - set up dhcpd:
+        $ systemctl enable dhcpd4
+        $ systemctl start dhcpd4
+
+    - set up DHCPv6:
+        - install wide-dhcpv6 AUR package
+            $ git clone https://aur.archlinux.org/packages/wide-dhcpv6/
+            $ cd wide-dhcpv6/
+            $ makepkg
+            $ pacman -U wide-dhcpv6*.tar.xz
+        - /etc/wide-dhcpv6/dhcp6c.conf:
+            interface enp4s1 { # external facing interface - WAN
+                send ia-pd 0;
+            };
+    
+            id-assoc pd 0 { # prefix delegation request
+                prefix-interface enp2s0 {
+                    sla-id 1;
+                    sla-len 0;
+                };
+            };
+        - enable DHCPv6:
+            $ systemctl enable dhcp6c
+            $ systemctl start dhcp6c
+    - enable radvd:
+        - install radvd
+        - /etc/radvd.conf:
+            interface enp2s0
+            {
+                    AdvSendAdvert on;
+                    IgnoreIfMissing on;
+                    MinRtrAdvInterval 3;
+                    MaxRtrAdvInterval 10;
+                    prefix 2601:547:f00:608e::/64
+                    {
+                            AdvOnLink on;
+                            AdvAutonomous on;
+                            AdvRouterAddr on;
+                    };
+            };
+        - systemctl enable radvd; systemctl start radvd
+
+
+
+
 - Create user:
 
     groupadd -g 1000 cfallin
