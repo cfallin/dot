@@ -73,3 +73,7 @@ fi
 export no_kdestroy=1
 
 alias ls="ls --quoting-style=literal --color=auto"
+
+if [ -x `which opam` ]; then
+    eval `opam config env`
+fi
