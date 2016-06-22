@@ -25,6 +25,7 @@
 (global-set-key "\C-c\C-l" 'windmove-right)
 (global-set-key "\C-c\C-k" 'windmove-up)
 (global-set-key "\C-c\C-j" 'windmove-down)
+(global-set-key "\C-xo" 'switch-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
@@ -38,13 +39,24 @@
 (package-initialize)
 
 (setq package-list
-      '(rust-mode
+      '(flymake  ; on-the-fly error checking
+	company  ; autocompletions
+	; Rust...
+	rust-mode
         rustfmt
         cargo
         racer
-        company
+	flymake-rust
+	; Other languages:
         csharp-mode
-        openwith))
+	; File type bindings:
+        openwith
+	; Editing modes and additions:
+	evil
+	undo-tree
+	; Window movement helper:
+	switch-window))
+	
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -84,6 +96,13 @@
 ;; Rust.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'flymake)
+(require 'rfringe)
+(require 'racer)
+(require 'rustfmt)
+(require 'cargo)
+(require 'flymake-rust)
+
 ;; N.B.: requires `racer` binary (do `cargo install racer` and adjust
 ;; `racer-cmd` below as necessary).
 (setq rust-enable-racer t)
@@ -93,6 +112,7 @@
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook 'flymake-rust-load)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company (autocompletions).
