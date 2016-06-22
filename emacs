@@ -210,17 +210,6 @@
               nil))
           (open-list parts)))))
 
-;(add-to-list 'load-path "~/.emacs.d/epl")
-;(require 'package)
-;(add-to-list 'load-path "~/.emacs.d/dash.el")
-;(require 'dash)
-;(add-to-list 'load-path "~/.emacs.d/pkg-info.el")
-;(require 'pkg-info)
-;(add-to-list 'load-path "~/.emacs.d/clojure-mode")
-;(require 'clojure-mode)
-;(add-to-list 'load-path "~/.emacs.d/cider")
-;(require 'cider)
-
 (require 'openwith)
 (setq openwith-associations
       '(("\\.pdf\\'" "evince" (file))))
@@ -230,3 +219,9 @@
 (tool-bar-mode 0)
 
 (require 'notmuch nil 'noerror)
+
+;; MELPA
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
