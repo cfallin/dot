@@ -65,8 +65,6 @@
 
 (require 'notmuch nil 'noerror)
 
-(global-company-mode)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; File associations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -115,6 +113,7 @@
 			    (racer-activate)
 			    (racer-turn-on-eldoc)
 			    (flycheck-mode)
+			    (company-mode)
 			    (set (make-local-variable 'company-backends) '(company-racer))
 			    (local-set-key (kbd "M-.") #'racer-find-definition)
 			    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
