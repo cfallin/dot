@@ -31,11 +31,16 @@
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(package-install 'rust-mode)
-(package-install 'rustfmt)
-(package-install 'cargo)
-(package-install 'csharp-mode)
-(package-install 'openwith)
+(setq package-list
+      '(rust-mode
+	rustfmt
+	cargo
+	csharp-mode
+	openwith))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 (require 'notmuch nil 'noerror)
 
