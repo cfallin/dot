@@ -117,7 +117,8 @@
 			    (racer-turn-on-eldoc)
 			    (set (make-local-variable 'company-backends) '(company-racer))
 			    (local-set-key (kbd "M-.") #'racer-find-definition)
-			    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
+			    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
+			    (local-set-key (kbd "\C-c\C-t") #'cargo-process-test)))
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
