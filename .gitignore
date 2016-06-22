@@ -4,3 +4,4 @@ ssh/id_*
 emacs/auto-save-list
 emacs.d/session*
 emacs.d/auto-save-list
+emacs.d/elpa
