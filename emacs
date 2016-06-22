@@ -80,10 +80,11 @@
 ;; Rust.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; N.B.: requires `racer` binary (do `cargo install racer` and make sure
-;; `~/.multirust/toolchains/{nightly,beta,stable}/cargo/bin` is in $PATH).
+;; N.B.: requires `racer` binary (do `cargo install racer` and adjust
+;; `racer-cmd` below as necessary).
 (setq rust-enable-racer t)
 (setq racer-rust-src-path "~/build/rust/src")
+(setq racer-cmd "~/.multirust/toolchains/nightly/cargo/bin/racer")
 
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
