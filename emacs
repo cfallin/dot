@@ -100,7 +100,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'flycheck)
-(require 'rfringe)
 (require 'racer)
 (require 'rustfmt)
 (require 'cargo)
