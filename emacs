@@ -8,6 +8,8 @@
 (menu-bar-mode 0)  ; no menubar
 (tool-bar-mode 0)  ; no toolbar
 
+(load "~/.emacs.d/themes/meacupla-theme.el")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -33,10 +35,12 @@
 
 (setq package-list
       '(rust-mode
-	rustfmt
-	cargo
-	csharp-mode
-	openwith))
+        rustfmt
+        cargo
+        racer
+        company
+        csharp-mode
+        openwith))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -76,8 +80,24 @@
 ;; Rust.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; N.B.: requires `racer` binary (do `cargo install racer` and make sure
+;; `~/.multirust/toolchains/{nightly,beta,stable}/cargo/bin` is in $PATH).
 (setq rust-enable-racer t)
 (setq racer-rust-src-path "~/build/rust/src")
+
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Company (autocompletions).
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+(setq company-idle-delay .3)
+(setq company-tooltip-limit 20)
+(setq company-minimum-prefix-length 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom commands.
