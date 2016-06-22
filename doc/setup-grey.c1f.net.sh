@@ -28,3 +28,4 @@ docker run --restart=always -d --name c1f_net -v /home/www/c1f.net:/usr/share/ng
 # fallin.rog
 FALLINDOMAINS=fallin.org,www.fallin.org
 docker run --restart=always -d --name fallin_org -v /home/www/fallin.org:/usr/share/nginx/html -v /home/logs/fallin.org:/var/log/nginx -e VIRTUAL_HOST=$FALLINDOMAINS -e LETSENCRYPT_HOST=$FALLINDOMAINS -e LETSENCRYPT_EMAIL=root@c1f.net -e VIRTUAL_PORT=80 nginx
+docker run --restart=always -d --name blog_cfall_in -v /home/www/blog.cfall.in:/usr/share/nginx/html -v /home/logs/blog.cfall.in:/var/log/nginx -e VIRTUAL_HOST=blog.cfall.in -e LETSENCRYPT_HOST=blog.cfall.in -e LETSENCRYPT_EMAIL=root@c1f.net -e VIRTUAL_PORT=80 nginx
