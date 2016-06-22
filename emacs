@@ -32,7 +32,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; MELPA
-;; (install with M-x install-package: rust-mode, rustfmt, cargo, csharp-mode)
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
@@ -117,7 +116,8 @@
 			    (set (make-local-variable 'company-backends) '(company-racer))
 			    (local-set-key (kbd "M-.") #'racer-find-definition)
 			    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
-			    (local-set-key (kbd "\C-c\C-t") #'cargo-process-test)))
+			    (local-set-key (kbd "\C-c\C-t") #'cargo-process-test)
+			    (local-set-key (kbd "\C-q") #'rust-format-buffer)))
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
