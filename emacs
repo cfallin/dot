@@ -21,6 +21,10 @@
 (global-set-key [f5] 'word-count)
 (global-set-key "\C-cm" 'un-microsoft-ify)
 (global-set-key "\C-cu" 'unwrap)
+(global-set-key "\C-c\C-h" 'windmove-left)
+(global-set-key "\C-c\C-l" 'windmove-right)
+(global-set-key "\C-c\C-k" 'windmove-up)
+(global-set-key "\C-c\C-j" 'windmove-down)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
