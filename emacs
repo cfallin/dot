@@ -39,14 +39,15 @@
 (package-initialize)
 
 (setq package-list
-      '(flymake  ; on-the-fly error checking
+      '(flycheck  ; on-the-fly error checking
 	company  ; autocompletions
 	; Rust...
 	rust-mode
         rustfmt
         cargo
         racer
-	flymake-rust
+	company-racer
+	flycheck-rust
 	; Other languages:
         csharp-mode
 	; File type bindings:
@@ -63,6 +64,8 @@
     (package-install package)))
 
 (require 'notmuch nil 'noerror)
+
+(global-company-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; File associations.
@@ -96,12 +99,12 @@
 ;; Rust.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'flymake)
+(require 'flycheck)
 (require 'rfringe)
 (require 'racer)
 (require 'rustfmt)
 (require 'cargo)
-(require 'flymake-rust)
+(require 'flycheck-rust)
 
 ;; N.B.: requires `racer` binary (do `cargo install racer` and adjust
 ;; `racer-cmd` below as necessary).
@@ -109,10 +112,13 @@
 (setq racer-rust-src-path "~/build/rust/src")
 (setq racer-cmd "~/.multirust/toolchains/nightly/cargo/bin/racer")
 
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-(add-hook 'rust-mode-hook 'flymake-rust-load)
+(add-hook 'rust-mode-hook (lambda ()
+			    (racer-activate)
+			    (racer-turn-on-eldoc)
+			    (set (make-local-variable 'company-backends) '(company-racer))
+			    (local-set-key (kbd "M-.") #'racer-find-definition)
+			    (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company (autocompletions).
