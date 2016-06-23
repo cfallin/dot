@@ -124,7 +124,6 @@
 ;; Company (autocompletions).
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 (setq company-tooltip-align-annotations t)
 (setq company-idle-delay .3)
 (setq company-tooltip-limit 20)
