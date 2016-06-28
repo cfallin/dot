@@ -48,9 +48,9 @@
 	company-racer
 	flycheck-rust
 	; Other languages:
-        csharp-mode
+    csharp-mode
 	; File type bindings:
-        openwith
+    openwith
 	; Editing modes and additions:
 	evil
 	undo-tree
@@ -69,7 +69,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq openwith-associations
-      '(("\\.pdf\\'" "evince" (file))))
+      '(("\\.pdf\\'" "evince" (file))
+	("\\.svg\\'" "inkscape" (file))))
 (openwith-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -128,6 +129,14 @@
 (setq company-idle-delay .3)
 (setq company-tooltip-limit 20)
 (setq company-minimum-prefix-length 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LaTeX.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'latex-mode-hook (lambda ()
+			     (flyspell-mode)
+			     (reftex-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom commands.
