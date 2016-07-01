@@ -26,6 +26,7 @@
 (global-set-key "\C-c\C-k" 'windmove-up)
 (global-set-key "\C-c\C-j" 'windmove-down)
 (global-set-key "\C-xo" 'switch-window)
+(global-set-key "\C-\\" 'redo) ; C-/ is undo, so C-\ is redo
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
@@ -54,6 +55,7 @@
 	; Editing modes and additions:
 	evil
 	undo-tree
+	redo+
 	; Window movement helper:
 	switch-window))
 	
@@ -63,6 +65,7 @@
     (package-install package)))
 
 (require 'notmuch nil 'noerror)
+(require 'redo+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; File associations.
