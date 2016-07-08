@@ -146,6 +146,10 @@
 	      (list "python" (expand-file-name "~/.emacs.d/ycmd/ycmd")))
 (set-variable 'ycmd-global-config (expand-file-name "~/.ycm_config.py"))
 
+(setq flycheck-clang-language-standard "c++11")
+(setq flycheck-clang-include-path
+      '("./include/" "../include/" "../../include/"))
+
 (add-hook 'c++-mode-hook (lambda ()
 			   (company-mode)
 			   (ycmd-mode)
