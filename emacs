@@ -48,10 +48,14 @@
         racer
 	company-racer
 	flycheck-rust
+	; C++...
+	clang-format
+	ycmd
+	company-ycmd
 	; Other languages:
-    csharp-mode
+	csharp-mode
 	; File type bindings:
-    openwith
+	openwith
 	; Editing modes and additions:
 	evil
 	undo-tree
@@ -123,6 +127,33 @@
 			    (local-set-key (kbd "\C-c\C-t") #'cargo-process-test)
 			    (local-set-key (kbd "\C-q") #'rust-format-buffer)))
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; C++.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'clang-format)
+(require 'ycmd)
+(require 'company-ycmd)
+
+(company-ycmd-setup)
+
+;; N.B.: requires `ycmd` from https://github.com/Valloric/ycmd.
+;; After cloning into ~/.emacs.d/ycmd, do:
+;; $ git submodule --init --recursive
+;; $ ./build.py --all
+(set-variable 'ycmd-server-command
+	      (list "python" (expand-file-name "~/.emacs.d/ycmd/ycmd")))
+(set-variable 'ycmd-global-config (expand-file-name "~/.ycm_config.py"))
+
+(add-hook 'c++-mode-hook (lambda ()
+			   (company-mode)
+			   (ycmd-mode)
+			   (flycheck-mode)
+			   (local-set-key (kbd "\C-q") #'clang-format-region)
+			   (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
+
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company (autocompletions).
