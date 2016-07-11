@@ -141,7 +141,7 @@
 
 ;; N.B.: requires `ycmd` from https://github.com/Valloric/ycmd.
 ;; After cloning into ~/.emacs.d/ycmd, do:
-;; $ git submodule --init --recursive
+;; $ git submodule update --init --recursive
 ;; $ ./build.py --all
 (set-variable 'ycmd-server-command
 	      (list "python" (expand-file-name "~/.emacs.d/ycmd/ycmd")))
