@@ -7,7 +7,7 @@
 (setq inhibit-startup-screen t)  ; skip startup screen
 (menu-bar-mode 0)  ; no menubar
 (tool-bar-mode 0)  ; no toolbar
-(ido-mode t)  ; Ido mode: smarter C-x b (buffer switching)
+;;(ido-mode t)  ; Ido mode: smarter C-x b (buffer switching)
 
 (load "~/.emacs.d/themes/meacupla-theme.el")
 
@@ -15,7 +15,8 @@
 ;; Key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key [f1] 'ido-switch-buffer)
+;;(global-set-key [f1] 'ido-switch-buffer)
+(global-set-key [f1] 'switch-to-buffer)
 (global-set-key [f2] 'other-window)
 (global-set-key [f3] 'delete-other-windows)
 (global-set-key [f4] 'kill-this-buffer)
