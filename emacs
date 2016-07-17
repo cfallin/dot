@@ -29,6 +29,7 @@
 (global-set-key "\C-c\C-j" 'windmove-down)
 (global-set-key "\C-xo" 'switch-window)
 (global-set-key "\C-\\" 'redo) ; C-/ is undo, so C-\ is redo
+(global-set-key "\C-ca" 'org-agenda)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
