@@ -87,7 +87,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Org-Mode (http://orgmode.org/manual/Activation.html#Activation)
-(setq org-agenda-files '("~/Documents/orgmode/work.org" "~/Documents/orgmode/personal.org"))
+(setq org-agenda-files '("~/Documents/orgmode/work.org"
+			 "~/Documents/orgmode/personal.org"
+			 "~/Dropbox/Documents/notes/research.org"))
 (setq org-file-apps
       '(("\\.pdf\\'" . "evince %s")))
 
