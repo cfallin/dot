@@ -8,6 +8,10 @@
   - mkfs.ext2 /dev/sda1
   - mkfs.ext4 /dev/sda2
   - mkswap /dev/sda3
+  - create other filesystems if starting from scratch
+    - /home as XFS on /dev/sdc
+    - /big as btrfs (TODO: switch back to ext4 or XFS) on /dev/sdd
+    - /backup as ext4 on /dev/sde
 - Mount everything under /mnt
 - ensure network connectivity (dhclient enp0s2)
 - pacstrap /mnt base
@@ -24,7 +28,19 @@
   - blkid to see UUIDs; add disks at mounts (/home, /big, /backup)
   - get a network connection (dhcpcd en0... if necessary)
   - pacman -S base-devel vim tmux wget bc openssh NetworkManager
-  - set up systemd-networkd
+  - set up netctl
+    - create /etc/netctl/enp2s0:
+
+      Interface=enp2s0
+      Connection=ethernet
+      IP=static
+      Address=('10.1.1.1/24')
+      Gateway=('10.1.1.3')
+      DNS=('8.8.8.8', '8.8.4.4')
+
+    - systemctl enable netctl@enp2s0
+    - systemctl start netctl@enp2s0
+
   - pacman -S xorg xorg-apps xorg-fonts xf86-video-intel xfce4 slim
   - enable slimd: systemctl enable slimd.service
   - generate locale and set it:
@@ -63,95 +79,25 @@
 
 - Ensure /etc/cron.daily/backup exists and is executable.
 
-- Setup as network gateway:
-  - /etc/systemd/network/inet.network:
-        [Match]
-        Name=enp4s1
+- IO tuning:
+  - For any ssd (sda sdc), create a systemd service:
+    - /usr/lib/systemd/system/io-scheduler-settings.service:
 
-        [Network]
-        DNS=8.8.8.8
-        DNS=8.8.4.4
+      [Unit]
+      Description=I/O scheduler settings
+      After=local-fs.target
 
-        [Network]
-        DHCP=ipv4
-  - /etc/systemd/network/wired.networK:
-        [Match]
-        Name=enp2s0
-      
-        [Network]
-        DNS=8.8.8.8
-        DNS=8.8.4.4
-      
-        [Address]
-        Address=10.1.1.1/24
-    - /etc/sysctl.conf:
-        net.ipv4.ip_forward=1
-        net.ipv6.conf.default.forwarding=1
-        net.ipv6.conf.all.forwarding=1
-        net.ipv6.conf.all.accept_ra=0
-        net.ipv6.conf.all.accept_ra_defrtr=0
-    - Set up iptables NAT:
-        $ iptables -t nat -A POSTROUTING -o enp4s1 -j MASQUERADE
-        $ iptables-save > /etc/iptables/iptables.conf
-        $ systemctl enable iptables
-        $ systemctl start iptables
-    - /etc/dhcpd.conf:
-        option domain-name "i.c1f.net";
-        option domain-name-servers 8.8.8.8, 8.8.4.4;
+      [Service]
+      Type=oneshot
+      ExecStart=/bin/bash -c 'echo deadline > /sys/block/sdc/queue/scheduler'
+      TimeoutSec=0
+      RemainAfterExit=yes
 
-        not authoritative;
+      [Install]
+      WantedBy=multi-user.target
 
-        subnet 10.1.1.0 netmask 255.255.255.0 {
-            authoritative;
-            range 10.1.1.128 10.1.1.192;
-            option routers 10.1.1.1;
-            default-lease-time 600;
-            max-lease-time 7200;
-        }
-    - set up dhcpd:
-        $ systemctl enable dhcpd4
-        $ systemctl start dhcpd4
-
-    - set up DHCPv6:
-        - install wide-dhcpv6 AUR package
-            $ git clone https://aur.archlinux.org/packages/wide-dhcpv6/
-            $ cd wide-dhcpv6/
-            $ makepkg
-            $ pacman -U wide-dhcpv6*.tar.xz
-        - /etc/wide-dhcpv6/dhcp6c.conf:
-            interface enp4s1 { # external facing interface - WAN
-                send ia-pd 0;
-            };
-    
-            id-assoc pd 0 { # prefix delegation request
-                prefix-interface enp2s0 {
-                    sla-id 1;
-                    sla-len 0;
-                };
-            };
-        - enable DHCPv6:
-            $ systemctl enable dhcp6c
-            $ systemctl start dhcp6c
-    - enable radvd:
-        - install radvd
-        - /etc/radvd.conf:
-            interface enp2s0
-            {
-                    AdvSendAdvert on;
-                    IgnoreIfMissing on;
-                    MinRtrAdvInterval 3;
-                    MaxRtrAdvInterval 10;
-                    prefix 2601:547:f00:608e::/64
-                    {
-                            AdvOnLink on;
-                            AdvAutonomous on;
-                            AdvRouterAddr on;
-                    };
-            };
-        - systemctl enable radvd; systemctl start radvd
-
-
-
+    - systemctl enable io-scheduler-settings
+    - systemctl start io-scheduler-settings
 
 - Create user:
 
@@ -161,23 +107,15 @@
     edit /etc/group, add cfallin to 'wheel'
     install sudo, edit /etc/sudoers, allow sudo (if desired)
 
-- Samba server/client setup:
-
-  - Set up a Kerberos 5 realm:
-    - install krb5 on Fedora desktop. Create kerberos database and user
-      principals. Add host principal to /etc/krb5.keytab.
-    - install krb5 on laptop. Set default realm. Comment out credentials cache
-      filename override -- SMB client wants it in the default location
-      /tmp/krb5cc_... . Ensure kinit and GSSAPI-enabled SSH work.
-    - Install Samba on desktop. Set realm, security = ADS, kerberos method =
-      system keytab, password server = <desktop>, passdb backend = tdbsam
-    - Create cifs/<desktop> principal and add to keytab with rc4-hmac:normal
-      encryption type
-    - Test with smbclient -k -L //<fullname> after kinit.
-
 - Steam setup:
 
   - pacman -S steam
   - install `steam-fonts` AUR package (git clone, pkgbuild -sri)
   - ln -s /usr/lib32/ld-linux.so.2 /lib/
   - steam
+
+- Other misc setup:
+
+  - install switchboard (github.com/nixprime/switchboard)
+    - add systemd service and enable
+    - add aliases to /etc/hosts
