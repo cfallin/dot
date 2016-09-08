@@ -124,7 +124,7 @@
 (add-hook 'rust-mode-hook (lambda ()
 			    (racer-activate)
 			    (racer-turn-on-eldoc)
-			    (flycheck-mode)
+			    ;(flycheck-mode)
 			    (company-mode)
 			    (set (make-local-variable 'company-backends) '(company-racer))
 			    (local-set-key (kbd "M-.") #'racer-find-definition)
