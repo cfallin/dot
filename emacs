@@ -57,6 +57,7 @@
 	company-ycmd
 	; Other languages:
 	csharp-mode
+	scala-mode
 	; File type bindings:
 	openwith
 	; Editing modes and additions:
@@ -159,6 +160,13 @@
 			   (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Prolog.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'auto-mode-alist '("\\.pro\\'" . prolog-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company (autocompletions).
