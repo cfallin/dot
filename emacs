@@ -58,6 +58,7 @@
 	; Other languages:
 	csharp-mode
 	scala-mode
+	haskell-mode
 	; File type bindings:
 	openwith
 	; Editing modes and additions:
