@@ -81,3 +81,6 @@ fi
 
 export PATH=~/.multirust/toolchains/nightly/cargo/bin:$PATH
 export RUST_SRC_PATH=~/build/rust/src
+
+export PATH=/opt/idea/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
