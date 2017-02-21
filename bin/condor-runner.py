@@ -13,12 +13,16 @@ errors = []
 nthreads = 1
 
 class Job:
-    def __init__(self, cmd):
+    def __init__(self, cwd, cmd):
+        self.cwd = cwd
         self.cmd = cmd
     def run(self):
         global errors, done, joblock, njobs
         print "start: ", self.cmd
-        ret = os.system(self.cmd)
+        cmd = self.cmd
+        if self.cwd != '':
+            cmd = "cd %s; %s" % (self.cwd, cmd)
+        ret = os.system(cmd)
         ret = 0
 
         joblock.acquire()
@@ -38,16 +42,19 @@ def parse_condor(fname):
     global jobs
     f = open(fname)
     exe = ''
+    cwd = ''
     for line in f.readlines():
-        parts = line.split('=')
+        parts = line.split('=', 1)
         if len(parts) < 2: continue
         cmd = parts[0].strip().lower()
         if len(parts) > 1: val = parts[1].strip()
         if cmd == 'executable':
             exe = val
+        if cmd == 'initialdir':
+            cwd = val
         if cmd == 'arguments':
             c = exe + ' ' + val
-            j = Job(c)
+            j = Job(cwd, c)
             jobs.append(j)
         
 if len(sys.argv) > 1:
