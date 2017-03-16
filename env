@@ -79,8 +79,10 @@ if [ $? -eq 0 ]; then
     eval `opam config env`
 fi
 
-export PATH=~/.multirust/toolchains/nightly/cargo/bin:$PATH
 export RUST_SRC_PATH=~/build/rust/src
+if [ -f $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
+fi
 
 export PATH=/opt/idea/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
