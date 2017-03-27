@@ -121,7 +121,7 @@
 ;; `racer-cmd` below as necessary).
 (setq rust-enable-racer t)
 (setq racer-rust-src-path "~/build/rust/src")
-(setq racer-cmd "~/.multirust/toolchains/nightly/cargo/bin/racer")
+(setq racer-cmd "~/.cargo/bin/racer")
 
 (add-hook 'rust-mode-hook (lambda ()
 			    (racer-activate)
@@ -250,19 +250,24 @@
       ;; move to the next end-of-line.
       (defun innerloop nil
         (when (< (point) end)
-          ;; if at end of paragraph, skip to the next para and loop.
-          (when (< (point) (- end 2))
-            (when (and (= (char-after (point)) 10)
-                       (= (char-after (+ (point) 1)) 10))
-              (forward-line 2)
-              (end-of-line)
-              (innerloop)))
-          ;; otherwise, delete the newline, insert a space, go to next
-          ;; EOL, and loop.
-          (delete-char 1)
-          (insert " ")
-          (end-of-line)
-          (innerloop)))
+	  (cond
+	   ;; if at end of paragraph, skip to the next para and loop.
+	   ((and
+	     (< (point) (- end 2))
+	     (= (char-after (point)) 10)
+	     (= (char-after (+ (point) 1)) 10))
+	    (progn
+	      (forward-line 2)
+	      (end-of-line)
+	      (innerloop)))
+	   ;; otherwise, delete the newline, insert a space, go to next
+	   ;; EOL, and loop.
+	   (t
+	    (progn
+	      (delete-char 1)
+	      (insert " ")
+	      (end-of-line)
+	      (innerloop))))))
       (innerloop)
 
       ;; return point to where it was previously.
