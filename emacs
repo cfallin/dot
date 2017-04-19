@@ -59,6 +59,7 @@
 	csharp-mode
 	scala-mode
 	haskell-mode
+	protobuf-mode
 	; File type bindings:
 	openwith
 	; Editing modes and additions:
