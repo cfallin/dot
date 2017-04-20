@@ -46,7 +46,6 @@
 	company  ; autocompletions
 	; Rust...
 	rust-mode
-        rustfmt
         cargo
         racer
 	company-racer
@@ -114,7 +113,6 @@
 
 (require 'flycheck)
 (require 'racer)
-(require 'rustfmt)
 (require 'cargo)
 (require 'flycheck-rust)
 
@@ -132,8 +130,7 @@
 			    (set (make-local-variable 'company-backends) '(company-racer))
 			    (local-set-key (kbd "M-.") #'racer-find-definition)
 			    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
-			    (local-set-key (kbd "\C-c\C-t") #'cargo-process-test)
-			    (local-set-key (kbd "\C-q") #'rust-format-buffer)))
+			    (local-set-key (kbd "\C-c\C-t") #'cargo-process-test)))
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
