@@ -59,6 +59,9 @@
 	scala-mode
 	haskell-mode
 	protobuf-mode
+	gnuplot-mode
+    lua-mode
+    toml-mode
 	; File type bindings:
 	openwith
 	; Editing modes and additions:
@@ -118,7 +121,7 @@
 
 ;; N.B.: requires `racer` binary (do `cargo install racer` and adjust
 ;; `racer-cmd` below as necessary).
-(setq rust-enable-racer t)
+;(setq rust-enable-racer t)
 (setq racer-rust-src-path "~/build/rust/src")
 (setq racer-cmd "~/.cargo/bin/racer")
 
@@ -153,7 +156,7 @@
 
 (add-hook 'c++-mode-hook (lambda ()
 			   (company-mode)
-			   (ycmd-mode)
+;			   (ycmd-mode)
 			   (flycheck-mode)
 			   (local-set-key (kbd "\C-q") #'clang-format-region)
 			   (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
