@@ -64,6 +64,9 @@ nnoremap <leader>ba :BufExplorer<cr>
 au BufNewFile,BufRead *.rs set filetype=rust
 au BufNewFile,BufRead *.rktl set filetype=scheme
 au BufNewFile,BufRead *.go set filetype=go
+au BufNewFile,BufRead *.ast set filetype=java
+au BufNewFile,BufRead *.jrag set filetype=java
+au BufNewFile,BufRead *.jadd set filetype=java
 
 imap jj <Esc>
 
