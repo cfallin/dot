@@ -122,7 +122,7 @@
 ;; N.B.: requires `racer` binary (do `cargo install racer` and adjust
 ;; `racer-cmd` below as necessary).
 ;(setq rust-enable-racer t)
-(setq racer-rust-src-path "~/build/rust/src")
+(setq racer-rust-src-path "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/")
 (setq racer-cmd "~/.cargo/bin/racer")
 
 (add-hook 'rust-mode-hook (lambda ()
