@@ -14,7 +14,7 @@
 ;; C-x b to a buffer should always show the buffer in the current window,
 ;; even if open somewhere else -- sometimes we want two windows on the
 ;; buffer.
-(setq display-buffer-overriding-action #'display-buffer-same-window)
+(setq display-buffer-overriding-action '(display-buffer-same-window . nil))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Key bindings.
