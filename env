@@ -89,3 +89,7 @@ fi
 export PATH=/opt/idea/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=/opt/scala/bin:$PATH
+
+alias rtest="cargo test"
+alias rbuild="cargo build && cargo build --release"
+alias rtb="cargo test && cargo build && cargo build --release"
