@@ -44,6 +44,10 @@
 (global-set-key "\C-\\" 'redo) ; C-/ is undo, so C-\ is redo
 (global-set-key "\C-ca" 'org-agenda)
 
+;; easier bindings for left and right window movement.
+(global-set-key (kbd "C-.") 'windmove-right)
+(global-set-key (kbd "C-,") 'windmove-left)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
