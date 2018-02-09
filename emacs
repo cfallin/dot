@@ -16,6 +16,14 @@
 ;; buffer.
 (setq display-buffer-overriding-action '(display-buffer-same-window . nil))
 
+;; framemove: windmove motion past the end of a frame should move to
+;; the next frame (so e.g. C-c C-l / C-c C-h move right and left
+;; across vertically-split windows in a pair of frames on dual
+;; monitors).
+(require 'cl)
+(load "~/.emacs.d/framemove.el")
+(setq framemove-hook-into-windmove t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
