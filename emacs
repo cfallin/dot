@@ -24,8 +24,12 @@
 (load "~/.emacs.d/framemove.el")
 (setq framemove-hook-into-windmove t)
 
+(cond
+ ;; default font on laptop
+ ((string-equal system-name "max") (set-default-font "DejaVu Sans Mono-15")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Key bindings.
+;; key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;(global-set-key [f1] 'ido-switch-buffer)
