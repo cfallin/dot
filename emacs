@@ -77,8 +77,9 @@
 	haskell-mode
 	protobuf-mode
 	gnuplot-mode
-    lua-mode
-    toml-mode
+	lua-mode
+	toml-mode
+	geiser
 	; File type bindings:
 	openwith
 	; Editing modes and additions:
@@ -201,6 +202,13 @@
 
 (add-to-list 'auto-mode-alist '("\\.jrag\\'" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.jadd\\'" . java-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Scheme.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq geiser-active-implementations '(racket))
+(setq geiser-guile-binary "/usr/bin/guile2.2")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company (autocompletions).
