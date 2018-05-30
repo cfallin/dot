@@ -80,6 +80,7 @@
 	lua-mode
 	toml-mode
 	geiser
+	slime
 	; File type bindings:
 	openwith
 	; Editing modes and additions:
@@ -209,6 +210,13 @@
 
 (setq geiser-active-implementations '(racket))
 (setq geiser-guile-binary "/usr/bin/guile2.2")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Lisp.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq inferior-lisp-program "/usr/bin/sbcl")
+(setq slime-contribs '(slime-fancy))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company (autocompletions).
