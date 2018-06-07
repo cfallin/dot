@@ -8,13 +8,13 @@ my $term = shift;
 open F, "condor_q -long cfallin |";
 
 while(<F>) {
-    if (/ClusterId = (\d+)/) {
+    if (/^ClusterId = (\d+)$/) {
         $clusterid = $1 + 0;
     }
-    if (/ProcId = (\d+)/) {
+    if (/^ProcId = (\d+)$/) {
         $jobid = $1 + 0;
     }
-    if (/Args = /) {
+    if (/^Args = /) {
         if (/$term/) {
             print "$clusterid.$jobid\n";
         }
