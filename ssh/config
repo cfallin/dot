@@ -14,3 +14,6 @@ Host ece031
 Host bigdata
   HostName bigdata.intel-research.net
   IdentityFile ~/.ssh/id_opencirrus
+
+#Host *.pdl.local.cmu.edu
+#  ProxyCommand ssh proxy.pdl.cmu.edu -W %h:%p
