@@ -216,7 +216,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq inferior-lisp-program "/usr/bin/sbcl")
-(setq slime-contribs '(slime-fancy))
+(setq slime-contribs '(slime-fancy slime-company))
+(add-hook 'slime-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
+(add-hook 'slime-repl-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company (autocompletions).
@@ -226,6 +232,11 @@
 (setq company-idle-delay .3)
 (setq company-tooltip-limit 20)
 (setq company-minimum-prefix-length 1)
+
+(define-key company-active-map (kbd "\C-n") 'company-select-next)
+(define-key company-active-map (kbd "\C-p") 'company-select-previous)
+(define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
+(define-key company-active-map (kbd "M-.") 'company-show-location)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LaTeX.
