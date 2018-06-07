@@ -1,7 +1,15 @@
 vim/.netrwhist
+vim/disabled-bundle/
 ssh/known_hosts
 ssh/id_*
+ssh/*.pem
 emacs/auto-save-list
 emacs.d/session*
 emacs.d/auto-save-list
 emacs.d/elpa
+emacs.d/eshell/
+emacs.d/ido.last*
+emacs.d/.emacs.desktop
+emacs.d/url/
+emacs.d/ycmd/
+*~
