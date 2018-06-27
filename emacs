@@ -48,6 +48,8 @@
 (global-set-key (kbd "C-.") 'windmove-right)
 (global-set-key (kbd "C-,") 'windmove-left)
 
+(global-set-key (kbd "C-;") 'insert-lambda)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -357,3 +359,6 @@
                   (open-list rem))
               nil))
           (open-list parts)))))
+
+(defun insert-lambda nil
+  (insert-string "λ"))
