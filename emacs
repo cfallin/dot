@@ -179,6 +179,8 @@
 			   (company-mode)
 ;			   (ycmd-mode)
 			   (flycheck-mode)
+			   (setq flycheck-gcc-language-standard "c++17")
+			   (setq flycheck-clang-language-standard "c++17")
 			   (local-set-key (kbd "\C-q") #'clang-format-region)
 			   (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
 
