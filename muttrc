@@ -1,12 +1,13 @@
 # basic setup: C1F.net mail
 set from = "cfallin@c1f.net"
 set realname = "Chris Fallin"
-set folder="imaps://mail.messagingengine.com/"
+set folder="imaps://imap.fastmail.com/"
 set imap_user = "cfallin@fastmail.com"
+set imap_pass = `cat $HOME/.imap-password`
 set imap_keepalive = 900
 set mail_check = 60
 set timeout = 60
-set smtp_url = "smtps://cfallin@fastmail.com@mail.messagingengine.com/"
+set smtp_url = "smtps://cfallin@fastmail.com@smtp.fastmail.com/"
 
 # IMAP folders
 set spoolfile="+INBOX"
@@ -35,10 +36,10 @@ bind editor ^T complete
 bind editor <space> noop
 bind pager a group-reply
 bind pager b previous-page
-macro index,pager ] "<copy-message>=INBOX.Archive<enter><enter><delete-message>"
+macro index,pager ] "<copy-message>=Archive<enter><enter><delete-message>"
 macro index,pager gl "<change-folder>"
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
-macro index,pager ga "<change-folder>=INBOX.Archive<tab><enter>" "Go to all mail"
+macro index,pager ga "<change-folder>=Archive<tab><enter>" "Go to all mail"
 bind index,pager gg imap-fetch-mail
 
 # local caches
