@@ -17,3 +17,6 @@ Host bigdata
 
 #Host *.pdl.local.cmu.edu
 #  ProxyCommand ssh proxy.pdl.cmu.edu -W %h:%p
+
+Host narwhal
+  HostName ops.narwhal.pdl.cmu.edu
