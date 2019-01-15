@@ -105,7 +105,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq openwith-associations
-      '(("\\.pdf\\'" "evince" (file))
+      '(("\\.pdf\\'" "qpdfview" (file))
 	("\\.svg\\'" "inkscape" (file))))
 (openwith-mode t)
 
@@ -118,7 +118,7 @@
 			 "~/Documents/orgmode/personal.org"
 			 "~/Dropbox/Documents/notes/research.org"))
 (setq org-file-apps
-      '(("\\.pdf\\'" . "evince %s")))
+      '(("\\.pdf\\'" . "qpdfview %s")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C, Python and indenting.
