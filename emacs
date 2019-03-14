@@ -105,7 +105,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq openwith-associations
-      '(("\\.pdf\\'" "evince" (file))
+      '(("\\.pdf\\'" "qpdfview" (file))
 	("\\.svg\\'" "inkscape" (file))))
 (openwith-mode t)
 
