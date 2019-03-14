@@ -58,6 +58,7 @@ if [ $? -eq 0 ]; then
 fi
 
 alias ro="emacs ~/Research/notes/research.org &"
+alias jo="emacs ~/Research/notes/jobs.org &"
 
 #if [ -d /opt/llvm ]; then
 #    export PATH=/opt/llvm/bin:$PATH
