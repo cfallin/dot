@@ -20,3 +20,17 @@ Host bigdata
 
 Host narwhal
   HostName ops.narwhal.pdl.cmu.edu
+Host pdl
+  HostName shell.pdl.local.cmu.edu
+
+Host *.pittsburgh.i.c1f.net
+  ProxyCommand ssh pgh.c1f.net -W %h:%p
+
+Host xap
+  ProxyCommand ssh pgh.c1f.net -W %h:%p
+Host xor
+  ProxyCommand ssh pgh.c1f.net -W %h:%p
+Host catenary
+  ProxyCommand ssh pgh.c1f.net -W %h:%p
+Host meep
+  HostName pgh.c1f.net
