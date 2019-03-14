@@ -9,6 +9,7 @@ set mail_check = 60
 set timeout = 60
 set sleep_time = 0
 set smtp_url = "smtps://cfallin@fastmail.com@smtp.fastmail.com/"
+set smtp_pass = `cat $HOME/.imap-password`
 
 # IMAP folders
 set spoolfile="+INBOX"
