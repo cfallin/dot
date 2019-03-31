@@ -54,7 +54,7 @@ export PS1="\u@\h:\w\\\$ "
 
 which keychain 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then
-    eval `keychain --eval --agents ssh,gpg 2>/dev/null -q`
+    eval `keychain --quiet --eval --agents ssh,gpg 2>/dev/null`
 fi
 
 alias ro="emacs ~/Research/notes/research.org &"
@@ -74,10 +74,10 @@ export no_kdestroy=1
 
 alias ls="ls --quoting-style=literal --color=auto"
 
-#which opam 2>/dev/null >/dev/null
-#if [ $? -eq 0 ]; then
-#    eval `opam config env`
-#fi
+which opam 2>/dev/null >/dev/null
+if [ $? -eq 0 ]; then
+    eval `opam config env`
+fi
 
 #export RUST_SRC_PATH=~/build/rust/src
 export RUST_SRC_PATH=$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
