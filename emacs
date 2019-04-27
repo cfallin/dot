@@ -10,6 +10,7 @@
 ;;(ido-mode t)  ; Ido mode: smarter C-x b (buffer switching)
 
 (load "~/.emacs.d/themes/meacupla-theme.el")
+(set-default-font "Inconsolata 15")
 
 ;; C-x b to a buffer should always show the buffer in the current window,
 ;; even if open somewhere else -- sometimes we want two windows on the
