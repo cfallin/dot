@@ -89,7 +89,7 @@
 	; Editing modes and additions:
 	evil
 	undo-tree
-	redo+
+	;redo+
 	; Window movement helper:
 	switch-window))
 	
@@ -99,7 +99,7 @@
     (package-install package)))
 
 (require 'notmuch nil 'noerror)
-(require 'redo+)
+;(require 'redo+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; File associations.
