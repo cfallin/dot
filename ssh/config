@@ -23,20 +23,20 @@ Host narwhal
 Host pdl
   HostName shell.pdl.local.cmu.edu
 
-Host *.pittsburgh.i.c1f.net
-  ProxyCommand ssh pgh.c1f.net -W %h:%p
+Host *.i.c1f.net
+  ProxyCommand ssh meep.c1f.net -W %h:%p
 
 Host xap-external
   HostName xap
-  ProxyCommand ssh pgh.c1f.net -W %h:%p
+  ProxyCommand ssh meep.c1f.net -W %h:%p
 Host xor-external
   HostName xor
-  ProxyCommand ssh pgh.c1f.net -W %h:%p
+  ProxyCommand ssh meep.c1f.net -W %h:%p
 Host catenary-external
   HostName catenary
-  ProxyCommand ssh pgh.c1f.net -W %h:%p
+  ProxyCommand ssh meep.c1f.net -W %h:%p
 Host meep-external
-  HostName pgh.c1f.net
+  HostName meep.c1f.net
 
 Host coleman
   HostName coleman.stampede.cs.cmu.edu
