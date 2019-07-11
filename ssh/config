@@ -37,6 +37,3 @@ Host catenary-external
   ProxyCommand ssh meep.c1f.net -W %h:%p
 Host meep-external
   HostName meep.c1f.net
-
-Host coleman
-  HostName coleman.stampede.cs.cmu.edu
