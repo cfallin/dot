@@ -95,6 +95,8 @@ alias rtest="cargo test"
 alias rbuild="cargo build && cargo build --release"
 alias rtb="cargo test && cargo build && cargo build --release"
 
-alias nix="source $HOME/.nix-profile/etc/profile.d/nix.sh"
-
 alias java8="source $HOME/bin/java8"
+
+if [ -f /etc/profile.d/nix.sh ]; then
+    source /etc/profile.d/nix.sh
+fi
