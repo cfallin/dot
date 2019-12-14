@@ -45,11 +45,11 @@ filetype indent plugin on
 " -------------------------
 
 set guifont=Monospace\ 10
-if has("gui_running")
-    colorscheme darkblue
-else
-    colorscheme murphy
-endif
+"if has("gui_running")
+"    colorscheme darkblue
+"else
+"    colorscheme murphy
+"endif
 
 " -------------------------
 "  filetypes
