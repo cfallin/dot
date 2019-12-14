@@ -7,3 +7,7 @@
 	helper = store
 [http]
 	postBuffer = 524288000
+[cinnabar]
+	version-check = 1571019025
+	helper = /home/cfallin/bin/git-cinnabar-helper
+	fsck = 1570680997
