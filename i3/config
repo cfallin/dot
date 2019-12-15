@@ -31,9 +31,11 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec xfce4-terminal # i3-sensible-terminal
+bindsym Mod1+Ctrl+t exec xfce4-terminal
 
 # start a browser
 bindsym $mod+semicolon exec firefox
+bindsym Mod1+Ctrl+w exec firefox
 
 # lock the screen
 bindsym $mod+p exec xscreensaver-command -lock
@@ -117,6 +119,17 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+bindsym Mod1+Ctrl+1 workspace 1
+bindsym Mod1+Ctrl+2 workspace 2
+bindsym Mod1+Ctrl+3 workspace 3
+bindsym Mod1+Ctrl+4 workspace 4
+bindsym Mod1+Ctrl+5 workspace 5
+bindsym Mod1+Ctrl+6 workspace 6
+bindsym Mod1+Ctrl+7 workspace 7
+bindsym Mod1+Ctrl+8 workspace 8
+bindsym Mod1+Ctrl+9 workspace 9
+bindsym Mod1+Ctrl+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
