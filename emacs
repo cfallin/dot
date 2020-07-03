@@ -127,6 +127,7 @@
 
 (setq tab-width 4)
 (setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq standard-indent 2)
 (setq py-indent-offset 4)
 (setq c-basic-offset 4)

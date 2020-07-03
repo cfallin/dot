@@ -32,6 +32,10 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>q gqip
+nnoremap <leader>f :bn<cr>
+nnoremap <leader>d :bp<cr>
+nnoremap <leader>ba :BufExplorer<cr>
+imap jj <Esc>
 
 filetype off
 filetype indent plugin on
@@ -70,7 +74,9 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 nnoremap <leader>f :bn<cr>
 nnoremap <leader>d :bp<cr>
 
-nnoremap <leader>ba :BufExplorer<cr>
+" -------------------------
+"  filetypes
+" -------------------------
 
 au BufNewFile,BufRead *.rs set filetype=rust
 au BufNewFile,BufRead *.rktl set filetype=scheme
@@ -79,7 +85,19 @@ au BufNewFile,BufRead *.ast set filetype=java
 au BufNewFile,BufRead *.jrag set filetype=java
 au BufNewFile,BufRead *.jadd set filetype=java
 
-imap jj <Esc>
+" -------------------------
+"  plugins
+" -------------------------
+
+call plug#begin("~/.vim/plugged")
+Plug 'rust-lang/rust.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
+
+" -------------------------
+"  clang-format / rustfmt
+" -------------------------
 
 function ClangFormatFile()
     let l:lines="all"

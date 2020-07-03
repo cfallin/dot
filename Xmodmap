@@ -1,0 +1,6 @@
+clear Lock
+! Caps Lock also emits Control_L.
+keycode 66 = Control_L
+add Control = Control_L
+! Print Screen is the Compose key.
+keycode 107 = Multi_key
