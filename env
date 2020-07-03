@@ -98,3 +98,5 @@ alias rtb="cargo test && cargo build && cargo build --release"
 alias nix="source $HOME/.nix-profile/etc/profile.d/nix.sh"
 
 alias java8="source $HOME/bin/java8"
+
+export TZ=PST8PDT
