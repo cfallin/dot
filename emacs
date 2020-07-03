@@ -10,7 +10,7 @@
 ;;(ido-mode t)  ; Ido mode: smarter C-x b (buffer switching)
 
 (load "~/.emacs.d/themes/meacupla-theme.el")
-(set-default-font "Inconsolata 15")
+;(set-default-font "Inconsolata 15")
 
 ;; C-x b to a buffer should always show the buffer in the current window,
 ;; even if open somewhere else -- sometimes we want two windows on the
@@ -365,6 +365,3 @@
 
 (defun insert-lambda nil
   (insert-string "λ"))
-
-;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
