@@ -51,6 +51,9 @@ set guifont=Monospace\ 10
 "    colorscheme murphy
 "endif
 
+" -------------------------
+" plugins
+" -------------------------
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -84,16 +87,6 @@ au BufNewFile,BufRead *.go set filetype=go
 au BufNewFile,BufRead *.ast set filetype=java
 au BufNewFile,BufRead *.jrag set filetype=java
 au BufNewFile,BufRead *.jadd set filetype=java
-
-" -------------------------
-"  plugins
-" -------------------------
-
-call plug#begin("~/.vim/plugged")
-Plug 'rust-lang/rust.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-call plug#end()
 
 " -------------------------
 "  clang-format / rustfmt
