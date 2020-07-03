@@ -41,15 +41,26 @@ filetype indent plugin on
 " -------------------------
 
 set guifont=Monospace\ 10
-if has("gui_running")
-    colorscheme darkblue
-else
-    colorscheme murphy
-endif
+"if has("gui_running")
+"    colorscheme darkblue
+"else
+"    colorscheme murphy
+"endif
 
 
-call pathogen#infect()
-call pathogen#helptags()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'nixprime/cpsm'
+Plugin 'neoclide/coc.nvim'
+call vundle#end()
+
+let g:ctrlp_max_depth=40
+let g:ctrlp_max_files=0
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+
 
 "let g:miniBufExplorerMoreThanOne=1
 let g:miniBufExplMapWindowNavVim=1
@@ -91,3 +102,5 @@ endfunction
 au BufNewFile,BufRead *.rs map <C-i> :call RustFormatFile()<cr>
 
 let g:ycm_rust_src_path = '/home/cfallin/build/rust'
+
+hi StatusLine term=none cterm=none
