@@ -25,12 +25,6 @@
 [submodule "emacs.d/cider"]
 	path = emacs.d/cider
 	url = https://github.com/clojure-emacs/cider
-[submodule "vim/bundle/YouCompleteMe"]
-	path = vim/bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
-[submodule "vim/bundle/vim-scala"]
-	path = vim/bundle/vim-scala
-	url = git@github.com:derekwyatt/vim-scala
-[submodule "vim/bundle/ctrlp.vim"]
-	path = vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim
+[submodule "vim/bundle/Vundle.vim"]
+	path = vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim

@@ -8,6 +8,6 @@
 [http]
 	postBuffer = 524288000
 [cinnabar]
-	version-check = 1571019025
+	version-check = 1593621484
 	helper = /home/cfallin/bin/git-cinnabar-helper
-	fsck = 1570680997
+	fsck = 1593621555
