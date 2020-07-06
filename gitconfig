@@ -11,3 +11,5 @@
 	version-check = 1593621484
 	helper = /home/cfallin/bin/git-cinnabar-helper
 	fsck = 1593621555
+[pull]
+	rebase = false
