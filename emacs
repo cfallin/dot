@@ -9,7 +9,7 @@
 (tool-bar-mode 0)  ; no toolbar
 ;;(ido-mode t)  ; Ido mode: smarter C-x b (buffer switching)
 
-(load "~/.emacs.d/themes/meacupla-theme.el")
+;(load "~/.emacs.d/themes/meacupla-theme.el")
 ;(set-default-font "Inconsolata 15")
 
 ;; C-x b to a buffer should always show the buffer in the current window,
@@ -91,8 +91,11 @@
 	undo-tree
 	;redo+
 	; Window movement helper:
-	switch-window))
-	
+	switch-window
+    color-theme-modern))
+
+(load-theme 'gnome2 t t)
+(enable-theme 'gnome2)
 
 (dolist (package package-list)
   (unless (package-installed-p package)
