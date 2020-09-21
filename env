@@ -98,3 +98,8 @@ alias rtb="cargo test && cargo build && cargo build --release"
 alias java8="source $HOME/bin/java8"
 
 export TZ=PST8PDT
+
+alias tmux='systemd-run --quiet --scope --user tmux'
+
+export EMSDK=$HOME/emsdk
+export PATH=$EMSDK:$EMSDK/node/12.18.1_64bit/bin:$EMSDK/upstream/emscripten:$PATH
