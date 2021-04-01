@@ -7,7 +7,6 @@
 (setq inhibit-startup-screen t)  ; skip startup screen
 (menu-bar-mode 0)  ; no menubar
 (tool-bar-mode 0)  ; no toolbar
-;;(ido-mode t)  ; Ido mode: smarter C-x b (buffer switching)
 
 ;(load "~/.emacs.d/themes/meacupla-theme.el")
 ;(set-default-font "Inconsolata 15")
@@ -17,24 +16,10 @@
 ;; buffer.
 (setq display-buffer-overriding-action '(display-buffer-same-window . nil))
 
-;; framemove: windmove motion past the end of a frame should move to
-;; the next frame (so e.g. C-c C-l / C-c C-h move right and left
-;; across vertically-split windows in a pair of frames on dual
-;; monitors).
-(require 'cl)
-(load "~/.emacs.d/framemove.el")
-(setq framemove-hook-into-windmove t)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;(global-set-key [f1] 'ido-switch-buffer)
-(global-set-key [f1] 'switch-to-buffer)
-(global-set-key [f2] 'other-window)
-(global-set-key [f3] 'delete-other-windows)
-(global-set-key [f4] 'kill-this-buffer)
-(global-set-key [f5] 'word-count)
 (global-set-key "\C-cm" 'un-microsoft-ify)
 (global-set-key "\C-cu" 'unwrap)
 (global-set-key "\C-c\C-h" 'windmove-left)
@@ -42,14 +27,6 @@
 (global-set-key "\C-c\C-k" 'windmove-up)
 (global-set-key "\C-c\C-j" 'windmove-down)
 (global-set-key "\C-xo" 'switch-window)
-(global-set-key "\C-\\" 'redo) ; C-/ is undo, so C-\ is redo
-(global-set-key "\C-ca" 'org-agenda)
-
-;; easier bindings for left and right window movement.
-(global-set-key (kbd "C-.") 'windmove-right)
-(global-set-key (kbd "C-,") 'windmove-left)
-
-(global-set-key (kbd "C-;") 'insert-lambda)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
@@ -62,37 +39,35 @@
 (package-initialize)
 
 (setq package-list
-      '(flycheck  ; on-the-fly error checking
-	company  ; autocompletions
-	; Rust...
-	rust-mode
-        cargo
-        racer
-	company-racer
-	flycheck-rust
-	; C++...
-	clang-format
-	ycmd
-	company-ycmd
-	; Other languages:
-	csharp-mode
-	scala-mode
-	haskell-mode
-	protobuf-mode
-	gnuplot-mode
-	lua-mode
-	toml-mode
-	geiser
-	slime
-	; File type bindings:
-	openwith
-	; Editing modes and additions:
-	evil
-	undo-tree
-	;redo+
-	; Window movement helper:
-	switch-window
-    color-theme-modern))
+	'(flycheck  ; on-the-fly error checking
+	  company  ; autocompletions
+	  lsp-mode ; language server protocol
+	  ; Rust...
+	  rust-mode
+	  flycheck-rust
+	  ; C++...
+	  clang-format
+	  ycmd
+	  company-ycmd
+	  ; Other languages:
+	  csharp-mode
+	  scala-mode
+	  haskell-mode
+	  protobuf-mode
+	  gnuplot-mode
+	  lua-mode
+	  toml-mode
+	  geiser
+	  slime
+	  ; File type bindings:
+	  openwith
+	  ; Editing modes and additions:
+	  evil
+	  undo-tree
+	  ;redo+
+	  ; Window movement helper:
+	  switch-window
+	  color-theme-modern))
 
 (load-theme 'gnome2 t t)
 (enable-theme 'gnome2)
@@ -100,9 +75,6 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
-
-(require 'notmuch nil 'noerror)
-;(require 'redo+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; File associations.
@@ -118,9 +90,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Org-Mode (http://orgmode.org/manual/Activation.html#Activation)
-(setq org-agenda-files '("~/Documents/orgmode/work.org"
-			 "~/Documents/orgmode/personal.org"
-			 "~/Dropbox/Documents/notes/research.org"))
+(setq org-agenda-files '("~/notes/work.org"))
 (setq org-file-apps
       '(("\\.pdf\\'" . "qpdfview %s")))
 
@@ -141,62 +111,25 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'flycheck)
-(require 'racer)
-(require 'cargo)
 (require 'flycheck-rust)
-
-;; N.B.: requires `racer` binary (do `cargo install racer` and adjust
-;; `racer-cmd` below as necessary).
-;(setq rust-enable-racer t)
-(setq racer-rust-src-path "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/")
-(setq racer-cmd "~/.cargo/bin/racer")
+(require 'rustfmt)
 
 (add-hook 'rust-mode-hook (lambda ()
-			    (racer-activate)
-			    (racer-turn-on-eldoc)
-			    ;(flycheck-mode)
+			    (flycheck-mode)
 			    (company-mode)
-			    (set (make-local-variable 'company-backends) '(company-racer))
-			    (local-set-key (kbd "M-.") #'racer-find-definition)
-			    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
-			    (local-set-key (kbd "\C-c\C-t") #'cargo-process-test)))
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+			    (lsp-mode)
+			    (rustfmt-enable-on-save)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'clang-format)
-(require 'ycmd)
-(require 'company-ycmd)
-
-(company-ycmd-setup)
-
-;; N.B.: requires `ycmd` from https://github.com/Valloric/ycmd.
-;; After cloning into ~/.emacs.d/ycmd, do:
-;; $ git submodule update --init --recursive
-;; $ ./build.py --all
-(set-variable 'ycmd-server-command
-	      (list "python" (expand-file-name "~/.emacs.d/ycmd/ycmd")))
-(set-variable 'ycmd-global-config (expand-file-name "~/.ycm_config.py"))
 
 (add-hook 'c++-mode-hook (lambda ()
-			   (company-mode)
-;			   (ycmd-mode)
-			   (flycheck-mode)
-			   (setq flycheck-gcc-language-standard "c++17")
-			   (setq flycheck-clang-language-standard "c++17")
-			   (local-set-key (kbd "\C-q") #'clang-format-region)
-			   (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
+			   (local-set-key (kbd "\C-q") #'clang-format-region)))
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Prolog.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-to-list 'auto-mode-alist '("\\.pro\\'" . prolog-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Datalog.
@@ -207,33 +140,6 @@
 (add-to-list 'auto-mode-alist '("\\.dl\\'" . souffle-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Java / JastAddJ
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-to-list 'auto-mode-alist '("\\.jrag\\'" . java-mode))
-(add-to-list 'auto-mode-alist '("\\.jadd\\'" . java-mode))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Scheme.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq geiser-active-implementations '(racket))
-(setq geiser-guile-binary "/usr/bin/guile2.2")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Lisp.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq inferior-lisp-program "/usr/bin/sbcl")
-(setq slime-contribs '(slime-fancy slime-company))
-(add-hook 'slime-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
-(add-hook 'slime-repl-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "TAB") #'company-indent-or-complete-common)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Company (autocompletions).
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -241,11 +147,6 @@
 (setq company-idle-delay .3)
 (setq company-tooltip-limit 20)
 (setq company-minimum-prefix-length 1)
-
-(define-key company-active-map (kbd "\C-n") 'company-select-next)
-(define-key company-active-map (kbd "\C-p") 'company-select-previous)
-(define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
-(define-key company-active-map (kbd "M-.") 'company-show-location)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LaTeX.
