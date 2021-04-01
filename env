@@ -81,7 +81,7 @@ if [ $? -eq 0 ]; then
 fi
 
 #export RUST_SRC_PATH=~/build/rust/src
-export RUST_SRC_PATH=$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
+export RUST_SRC_PATH=$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/
 if [ -f $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
     export LD_LIBRARY_PATH=$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/:$LD_LIBRARY_PATH

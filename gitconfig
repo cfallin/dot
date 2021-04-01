@@ -1,15 +1,22 @@
 [user]
 	name = Chris Fallin
-	email = cfallin@c1f.net
+	email = chris@cfallin.org
+	signingkey = CE2F846B7A5277E14035741431649E4FE65EB465
 [push]
 	default = current
 [credential]
 	helper = store
 [http]
-	postBuffer = 524288000
+	postBuffer = 10000000000
 [cinnabar]
-	version-check = 1600191761
+	version-check = 1611277254
 	helper = /home/cfallin/bin/git-cinnabar-helper
-	fsck = 1599855932
+	fsck = 1611277303
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[log]
+	showSignature = false
