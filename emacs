@@ -16,6 +16,8 @@
 ;; buffer.
 (setq display-buffer-overriding-action '(display-buffer-same-window . nil))
 
+(evil-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -174,32 +176,6 @@
     (switch-to-buffer (get-buffer-create bufname))
     (if (= n 1) (lisp-interaction-mode))))
 
-(defun word-count nil "Count words in current region"  (interactive)
-  (shell-command-on-region (mark) (point) "wc"))
-
-(defun un-microsoft-ify nil
-  (interactive)
-
-  ; save the region and use it for each replace-regexp.
-  (let ((start (point))
-        (end (mark)))
-    (when end
-
-      ; indented bulletted lists become "-"-bulletted plain text trees
-      (replace-regexp "^\x2022\x09" "    - " nil start end)
-      (replace-regexp "^o\x09" "      - " nil start end)
-      (replace-regexp "^\xf0a7\x09" "        - " nil start end)
-
-      ; special characters: quotes, arrows, ellipses, ...
-      (replace-regexp "\xf0e0" "-->" nil start end)
-      (replace-regexp "\x2026" "..." nil start end)
-      (replace-regexp "\x201c" "\"" nil start end)
-      (replace-regexp "\x201d" "\"" nil start end)
-      (replace-regexp "\x2018" "'" nil start end)
-      (replace-regexp "\x2019" "'" nil start end)
-      (replace-regexp "\x2013" "--" nil start end)
-      (set-mark end))))
-
 (defun unwrap nil
   (interactive)
 
@@ -243,30 +219,3 @@
       ;; return point to where it was previously.
       (goto-char p))))
 
-(defun open-urls nil
-  (interactive)
-
-  (let ((selection (buffer-substring-no-properties (region-beginning) (region-end))))
-    (if (= (length selection) 0)
-        (message "no text selected!")
-        (let ((parts (split-string selection)))
-          (message "selection: ")
-          (message selection)
-          (defun open-one-url (url)
-            (message "opening  url: ")
-            (message url)
-            (start-process "open-url"
-                           (get-buffer-create "*open-url-messages*")
-                           "/usr/bin/xdg-open"
-                           url))
-          (defun open-list (l)
-            (if l
-                (let ((url (car l))
-                      (rem (cdr l)))
-                  (open-one-url url)
-                  (open-list rem))
-              nil))
-          (open-list parts)))))
-
-(defun insert-lambda nil
-  (insert-string "λ"))
