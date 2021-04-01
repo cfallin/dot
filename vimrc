@@ -61,6 +61,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nixprime/cpsm'
 Plugin 'neoclide/coc.nvim'
+Plugin 'rhysd/vim-clang-format'
 call vundle#end()
 
 let g:ctrlp_max_depth=40
@@ -92,20 +93,12 @@ au BufNewFile,BufRead *.jadd set filetype=java
 "  clang-format / rustfmt
 " -------------------------
 
-function ClangFormatFile()
-    let l:lines="all"
-    if filereadable("/usr/share/clang/clang-format.py")
-        pyf /usr/share/clang/clang-format.py
-    elseif filereadable("/usr/share/vim/addons/syntax/clang-format-3.7.py")
-        pyf /usr/share/vim/addons/syntax/clang-format-3.7.py
-    endif
-endfunction
-au BufNewFile,BufRead *.cc map <C-i> :call ClangFormatFile()<cr>
-au BufNewFile,BufRead *.cpp map <C-i> :call ClangFormatFile()<cr>
-au BufNewFile,BufRead *.c map <C-i> :call ClangFormatFile()<cr>
-au BufNewFile,BufRead *.C map <C-i> :call ClangFormatFile()<cr>
-au BufNewFile,BufRead *.h map <C-i> :call ClangFormatFile()<cr>
-au BufNewFile,BufRead *.hpp map <C-i> :call ClangFormatFile()<cr>
+au BufNewFile,BufRead *.cc map <C-i> :ClangFormat<cr>
+au BufNewFile,BufRead *.cpp map <C-i> :ClangFormat<cr>
+au BufNewFile,BufRead *.c map <C-i> :ClangFormat<cr>
+au BufNewFile,BufRead *.C map <C-i> :ClangFormat<cr>
+au BufNewFile,BufRead *.h map <C-i> :ClangFormat<cr>
+au BufNewFile,BufRead *.hpp map <C-i> :ClangFormat<cr>
 
 function RustFormatFile()
     %!rustfmt
