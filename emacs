@@ -121,15 +121,13 @@
 
 (require 'flycheck)
 (require 'flycheck-rust)
-(require 'rustfmt)
 
 (add-hook 'rust-mode-hook (lambda ()
 			    (flycheck-mode)
 			    (company-mode)
 			    (lsp-mode)
-                (lsp)))
-
-(rustfmt-enable-on-save)
+                            (rust-enable-format-on-save)
+                            (lsp)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++.
