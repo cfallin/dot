@@ -22,13 +22,26 @@
 ;; key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key "\C-cm" 'un-microsoft-ify)
-(global-set-key "\C-cu" 'unwrap)
-(global-set-key "\C-c\C-h" 'windmove-left)
-(global-set-key "\C-c\C-l" 'windmove-right)
-(global-set-key "\C-c\C-k" 'windmove-up)
-(global-set-key "\C-c\C-j" 'windmove-down)
-(global-set-key "\C-xo" 'switch-window)
+;; From https://stackoverflow.com/questions/5682631/what-are-good-custom-keybindings-in-emacs:
+(global-unset-key "\C-l")
+(defvar ctl-l-map (make-keymap)
+     "Keymap for local bindings and functions, prefixed by (^L)")
+
+(define-key global-map "\C-l" 'Control-L-prefix)
+(fset 'Control-L-prefix ctl-l-map)
+
+(define-key ctl-l-map "\C-l" 'other-window)
+
+(define-key ctl-l-map "h" 'windmove-left)
+(define-key ctl-l-map "l" 'windmove-right)
+(define-key ctl-l-map "k" 'windmove-up)
+(define-key ctl-l-map "j" 'windmove-down)
+
+;;(global-set-key "\C-xo" 'switch-window)
+(define-key ctl-l-map "\C-g" 'switch-window)
+
+(global-set-key (kbd "S-<left>") 'windmove-left)
+(global-set-key (kbd "S-<right>") 'windmove-right)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
@@ -121,15 +134,12 @@
 
 (require 'flycheck)
 (require 'flycheck-rust)
-(require 'rustfmt)
 
 (add-hook 'rust-mode-hook (lambda ()
 			    (flycheck-mode)
 			    (company-mode)
-			    (lsp-mode)
-                (lsp)))
-
-(rustfmt-enable-on-save)
+                            (lsp)
+                            (local-set-key (kbd "C-i") #'rustfmt-format-buffer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++.
@@ -234,7 +244,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(undo-tree deadgrep key-chord helm lsp-mode magit toml-mode switch-window scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode openwith lua-mode haskell-mode gruvbox-theme groovy-mode gnuplot-mode ggtags geiser fsharp-mode flymake-rust flycheck-rust evil csharp-mode company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml ac-slime)))
+   '(bind-key exec-path-from-shell undo-tree deadgrep key-chord helm lsp-mode magit toml-mode switch-window scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode openwith lua-mode haskell-mode gruvbox-theme groovy-mode gnuplot-mode ggtags geiser fsharp-mode flymake-rust flycheck-rust evil csharp-mode company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml ac-slime)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
