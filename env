@@ -101,5 +101,7 @@ export TZ=PST8PDT
 
 alias tmux='systemd-run --quiet --scope --user tmux'
 
-export EMSDK=$HOME/emsdk
-export PATH=$EMSDK:$EMSDK/node/12.18.1_64bit/bin:$EMSDK/upstream/emscripten:$PATH
+#export EMSDK=$HOME/emsdk
+#export PATH=$EMSDK:$EMSDK/node/12.18.1_64bit/bin:$EMSDK/upstream/emscripten:$PATH
+
+alias e='emacsclient --tty'
