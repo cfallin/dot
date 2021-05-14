@@ -24,11 +24,11 @@ Host pdl
   HostName shell.pdl.local.cmu.edu
 
 Host *.i.c1f.net
-  ProxyCommand ssh meep.c1f.net -W %h:%p
+  ProxyCommand ssh home.c1f.net -W %h:%p
 
 Host xap-external
   HostName xap
-  ProxyCommand ssh meep.c1f.net -W %h:%p
+  ProxyCommand ssh home.c1f.net -W %h:%p
 Host xor-external
   HostName xor
   ProxyCommand ssh meep.c1f.net -W %h:%p

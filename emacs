@@ -91,6 +91,8 @@
 
 ;;(load-theme 'gnome2 t t)
 ;;(enable-theme 'gnome2)
+;;(color-theme-initialize)
+;;(color-theme-darktty)
 
 (load-theme 'dark-laptop t t)
 (enable-theme 'dark-laptop)
@@ -237,17 +239,3 @@
 
       ;; return point to where it was previously.
       (goto-char p))))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(bind-key exec-path-from-shell undo-tree deadgrep key-chord helm lsp-mode magit toml-mode switch-window scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode openwith lua-mode haskell-mode gruvbox-theme groovy-mode gnuplot-mode ggtags geiser fsharp-mode flymake-rust flycheck-rust evil csharp-mode company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml ac-slime)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
