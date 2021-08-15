@@ -64,7 +64,7 @@ alias jo="emacs ~/Research/notes/jobs.org &"
 #    export PATH=/opt/llvm/bin:$PATH
 #fi
 
-export PATH=$(ruby -e "print Gem.user_dir"):$PATH
+#export PATH=$(ruby -e "print Gem.user_dir"):$PATH
 
 export PATH=~/.rakudobrew/bin:$PATH
 if [ -x ~/.rakudobrew/bin/rakudobrew ]; then
