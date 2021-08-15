@@ -18,6 +18,9 @@
 
 ;;(evil-mode)
 
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 10 1024 1024))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -42,6 +45,10 @@
 
 (global-set-key (kbd "S-<left>") 'windmove-left)
 (global-set-key (kbd "S-<right>") 'windmove-right)
+(global-set-key (kbd "S-<up>") 'windmove-up)
+(global-set-key (kbd "S-<down>") 'windmove-down)
+
+(ivy-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
@@ -139,7 +146,7 @@
 			    (flycheck-mode)
 			    (company-mode)
                             (lsp)
-                            (local-set-key (kbd "C-i") #'rustfmt-format-buffer)))
+                            (local-set-key (kbd "C-c C-i") #'rustfmt-format-buffer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++.
@@ -237,17 +244,3 @@
 
       ;; return point to where it was previously.
       (goto-char p))))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(bind-key exec-path-from-shell undo-tree deadgrep key-chord helm lsp-mode magit toml-mode switch-window scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode openwith lua-mode haskell-mode gruvbox-theme groovy-mode gnuplot-mode ggtags geiser fsharp-mode flymake-rust flycheck-rust evil csharp-mode company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml ac-slime)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
