@@ -98,6 +98,8 @@
 
 ;;(load-theme 'gnome2 t t)
 ;;(enable-theme 'gnome2)
+;;(color-theme-initialize)
+;;(color-theme-darktty)
 
 (load-theme 'dark-laptop t t)
 (enable-theme 'dark-laptop)
