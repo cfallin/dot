@@ -10,6 +10,7 @@
 
 ;(load "~/.emacs.d/themes/meacupla-theme.el")
 ;(set-default-font "Inconsolata 15")
+(set-frame-font "Source Code Pro 14")
 
 ;; C-x b to a buffer should always show the buffer in the current window,
 ;; even if open somewhere else -- sometimes we want two windows on the
@@ -47,8 +48,6 @@
 (global-set-key (kbd "S-<right>") 'windmove-right)
 (global-set-key (kbd "S-<up>") 'windmove-up)
 (global-set-key (kbd "S-<down>") 'windmove-down)
-
-(ivy-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
@@ -90,7 +89,11 @@
           key-chord
 	  ; Window movement helper:
 	  switch-window
-	  color-theme-modern))
+	  color-theme-modern
+      ; Helm and projectile:
+      projectile
+      helm
+      helm-projectile))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -104,8 +107,31 @@
 (load-theme 'dark-laptop t t)
 (enable-theme 'dark-laptop)
 
-(key-chord-mode)
+;;(key-chord-mode)
 ;;(key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Helm.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'projectile)
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(require 'helm)
+(require 'helm-config)
+(require 'helm-projectile)
+
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(helm-mode 1)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; File associations.

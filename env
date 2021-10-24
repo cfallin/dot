@@ -37,20 +37,7 @@ export HISTCONTROL=""
 # start a VNC server
 alias vnc="vncserver -geometry 3840x1080 -geometry 1920x1080 -geometry 1280x800 -geometry 2560x800 -geometry 1280x720 -geometry 1280x1024"
 
-if [ `hostname` == "xap.i.c1f.net" ]; then
-    # home workstation
-    alias dualhead="xrandr --output HDMI1 --mode 1920x1080 --output HDMI2 --mode 1920x1080 --left-of HDMI1"
-    alias singlehead="xrandr --output HDMI1 --mode 1920x1080 --output HDMI2 --off"
-fi
-if [ `hostname` == "atom.ece.cmu.edu" ]; then
-    # office workstation
-    alias exp='cd /afs/ece/usr/cfallin/exp'
-    alias afs='cd /afs/ece/usr/cfallin'
-    alias dualhead="xrandr --output DVI-0 --auto --output DVI-1 --auto --right-of DVI-0 --rotate normal"
-    alias singlehead="xrandr --output DVI-0 --auto --output DVI-1 --auto --same-as DVI-0"
-fi
-
-export PS1="\u@\h:\w\\\$ "
+#export PS1="\u@\h:\w\\\$ "
 
 which keychain 2>/dev/null >/dev/null
 if [ $? -eq 0 ]; then
