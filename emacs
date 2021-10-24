@@ -19,6 +19,9 @@
 
 ;;(evil-mode)
 
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 10 1024 1024))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key bindings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -43,6 +46,10 @@
 
 (global-set-key (kbd "S-<left>") 'windmove-left)
 (global-set-key (kbd "S-<right>") 'windmove-right)
+(global-set-key (kbd "S-<up>") 'windmove-up)
+(global-set-key (kbd "S-<down>") 'windmove-down)
+
+(ivy-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
@@ -169,7 +176,7 @@
 			    (flycheck-mode)
 			    (company-mode)
                             (lsp)
-                            (local-set-key (kbd "C-i") #'rustfmt-format-buffer)))
+                            (local-set-key (kbd "C-c C-i") #'rustfmt-format-buffer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++.

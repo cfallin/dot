@@ -60,8 +60,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nixprime/cpsm'
-Plugin 'neoclide/coc.nvim'
-Plugin 'rhysd/vim-clang-format'
+"Plugin 'neoclide/coc.nvim'
+"Plugin 'rhysd/vim-clang-format'
 call vundle#end()
 
 let g:ctrlp_max_depth=40
