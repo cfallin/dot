@@ -1,5 +1,5 @@
-# basic setup: C1F.net mail
-set from = "cfallin@c1f.net"
+# basic setup: cfallin.org mail
+set from = "chris@cfallin.org"
 set realname = "Chris Fallin"
 set folder="imaps://imap.fastmail.com/"
 set imap_user = "cfallin@fastmail.com"
