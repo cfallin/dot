@@ -15,7 +15,7 @@
 ;; C-x b to a buffer should always show the buffer in the current window,
 ;; even if open somewhere else -- sometimes we want two windows on the
 ;; buffer.
-(setq display-buffer-overriding-action '(display-buffer-same-window . nil))
+;;(setq display-buffer-overriding-action '(display-buffer-same-window . nil))
 
 ;;(evil-mode)
 
@@ -216,6 +216,8 @@
 ;; Custom commands.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(load "~/.emacs.d/stacknav.el")
+
 ; http://everything2.com/index.pl?node_id=1038451
 (defun create-scratch-buffer nil
   (interactive)
@@ -230,45 +232,14 @@
     (switch-to-buffer (get-buffer-create bufname))
     (if (= n 1) (lisp-interaction-mode))))
 
-(defun unwrap nil
-  (interactive)
+;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph    
+(defun unfill-paragraph (&optional region)
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (let ((fill-column (point-max))
+        ;; This would override `fill-column' if it's an integer.
+        (emacs-lisp-docstring-fill-column t))
+    (fill-paragraph nil region)))
 
-  (let ((p (point))
-        (start (point))
-        (end (mark)))
-    (when end
-      ;; ensure start < end, swap if not
-      (when (> start end)
-        (let ((tmp start))
-          (setq start end)
-          (setq end tmp)))
-
-      ;; go to the end of the first line
-      (goto-char start)
-      (end-of-line)
-      ;; for each line until end, delete the newline, insert a space, and
-      ;; move to the next end-of-line.
-      (defun innerloop nil
-        (when (< (point) end)
-	  (cond
-	   ;; if at end of paragraph, skip to the next para and loop.
-	   ((and
-	     (< (point) (- end 2))
-	     (= (char-after (point)) 10)
-	     (= (char-after (+ (point) 1)) 10))
-	    (progn
-	      (forward-line 2)
-	      (end-of-line)
-	      (innerloop)))
-	   ;; otherwise, delete the newline, insert a space, go to next
-	   ;; EOL, and loop.
-	   (t
-	    (progn
-	      (delete-char 1)
-	      (insert " ")
-	      (end-of-line)
-	      (innerloop))))))
-      (innerloop)
-
-      ;; return point to where it was previously.
-      (goto-char p))))
+;; Handy key definition
+(define-key global-map (kbd "M-S-q") 'unfill-paragraph)
