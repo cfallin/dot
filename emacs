@@ -49,6 +49,12 @@
 (global-set-key (kbd "S-<up>") 'windmove-up)
 (global-set-key (kbd "S-<down>") 'windmove-down)
 
+(global-set-key (kbd "M-.") 'meta-dot-key)
+(defun meta-dot-key ()
+  (interactive)
+  (stacknav-mark)
+  (lsp-goto-type-definition))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
