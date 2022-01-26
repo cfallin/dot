@@ -92,7 +92,9 @@
   (let* ((b (current-buffer))
          (pos (point))
          (line-number (line-number-at-pos pos))
-         (headerline (if lsp-headerline--string
+         (headerline (if (and
+                          (boundp 'lsp-headerline--string)
+                          lsp-headerline--string)
                          (format " [ %s ]" lsp-headerline--string)
                        ""))
          (line (buffer-substring (line-beginning-position) (line-end-position)))
