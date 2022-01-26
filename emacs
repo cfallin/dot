@@ -243,3 +243,16 @@
 
 ;; Handy key definition
 (define-key global-map (kbd "M-S-q") 'unfill-paragraph)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(yaml-mode vterm unfill undo-tree treemacs-projectile toml-mode switch-window solarized-theme scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode projectile-ripgrep openwith ocamlformat nasm-mode merlin magit lua-mode lsp-ivy key-chord helm-projectile haskell-mode gruvbox-theme groovy-mode golden-ratio gnuplot-mode ggtags geiser-guile fsharp-mode flymake-rust flycheck-rust exec-path-from-shell evil deadgrep csharp-mode counsel company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml bind-key ac-slime)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
