@@ -5,6 +5,7 @@
 ;;; Released under the MIT License.
 
 (defvar stacknav-line-preview-length 40 "Length of line previews in stacknav locations.")
+(defvar stacknav-max-length 100 "Max length of stacknav history.")
 
 (defvar stacknav--back nil "Back-list for stacknav.")
 (defvar stacknav--fwd nil "Foward-list for stacknav.")
@@ -78,19 +79,28 @@
    (eq (nth 0 l1) (nth 0 l2))
    (eq (nth 1 l1) (nth 1 l2))))
 
+(defun stacknav--take-n-while-pred (l pred n)
+  (let ((i 0)
+        (result (list)))
+    (while (and l (< i n))
+           (let ((elem (pop l)))
+             (if (funcall pred elem)
+               (push result elem)
+               (setq i (+ i 1)))))
+    (reverse result)))
+
 (defun stacknav--push-and-remove-dups (loc stack)
-  (let ((filtered (mapcan (lambda (existing-loc)
-                            (if (not (stacknav--loc-eq loc existing-loc))
-                                (list existing-loc)
-                              (list)))
-                          stack)))
+  (let* ((filtered (stacknav--take-n-while-pred
+                     stack
+                     (lambda (elem) (not (stacknav--loc-eq elem loc)))
+                     stacknav-max-length)))
     (push loc filtered)
     filtered))
 
 (defun stacknav--get-loc ()
   "Get current location."
   (let* ((b (current-buffer))
-         (pos (point))
+         (pos (point-marker))
          (line-number (line-number-at-pos pos))
          (headerline (if (and
                           (boundp 'lsp-headerline--string)
