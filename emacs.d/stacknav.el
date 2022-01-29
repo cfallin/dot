@@ -84,8 +84,8 @@
         (result (list)))
     (while (and l (< i n))
            (let ((elem (pop l)))
-             (if (funcall pred elem)
-               (push result elem)
+             (when (funcall pred elem)
+               (push elem result)
                (setq i (+ i 1)))))
     (reverse result)))
 
