@@ -99,7 +99,9 @@
       ; Helm and projectile:
       projectile
       helm
-      helm-projectile))
+      helm-projectile
+      magit
+      forge))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
@@ -138,6 +140,14 @@
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Magit and Forge.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'magit)
+(with-eval-after-load 'magit
+  (require 'forge))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; File associations.
@@ -249,13 +259,19 @@
 
 ;; Handy key definition
 (define-key global-map (kbd "M-S-q") 'unfill-paragraph)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Custom variables.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(yaml-mode vterm unfill undo-tree treemacs-projectile toml-mode switch-window solarized-theme scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode projectile-ripgrep openwith ocamlformat nasm-mode merlin magit lua-mode lsp-ivy key-chord helm-projectile haskell-mode gruvbox-theme groovy-mode golden-ratio gnuplot-mode ggtags geiser-guile fsharp-mode flymake-rust flycheck-rust exec-path-from-shell evil deadgrep csharp-mode counsel company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml bind-key ac-slime)))
+   '(lsp-mode forge magithub yaml-mode vterm unfill undo-tree treemacs-projectile toml-mode switch-window solarized-theme scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode projectile-ripgrep openwith ocamlformat nasm-mode merlin magit lua-mode lsp-ivy key-chord helm-projectile haskell-mode gruvbox-theme groovy-mode golden-ratio gnuplot-mode ggtags geiser-guile fsharp-mode flymake-rust flycheck-rust exec-path-from-shell evil deadgrep csharp-mode counsel company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml bind-key ac-slime))
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
