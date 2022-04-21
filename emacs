@@ -193,6 +193,12 @@
                             (local-set-key (kbd "C-c C-i") #'rustfmt-format-buffer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ISLE (Cranelift DSL).
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'auto-mode-alist '("\\.isle\\'" . lisp-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C++.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -270,7 +276,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(lsp-mode forge magithub yaml-mode vterm unfill undo-tree treemacs-projectile toml-mode switch-window solarized-theme scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode projectile-ripgrep openwith ocamlformat nasm-mode merlin magit lua-mode lsp-ivy key-chord helm-projectile haskell-mode gruvbox-theme groovy-mode golden-ratio gnuplot-mode ggtags geiser-guile fsharp-mode flymake-rust flycheck-rust exec-path-from-shell evil deadgrep csharp-mode counsel company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml bind-key ac-slime))
+   '(ripgrep lsp-mode forge magithub yaml-mode vterm unfill undo-tree treemacs-projectile toml-mode switch-window solarized-theme scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode projectile-ripgrep openwith ocamlformat nasm-mode merlin magit lua-mode lsp-ivy key-chord helm-projectile haskell-mode gruvbox-theme groovy-mode golden-ratio gnuplot-mode ggtags geiser-guile fsharp-mode flymake-rust flycheck-rust exec-path-from-shell evil deadgrep csharp-mode counsel company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml bind-key ac-slime))
  '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
