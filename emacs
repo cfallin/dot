@@ -224,6 +224,8 @@
 
 (load "~/.emacs.d/stacknav.el")
 
+(add-to-list 'auto-mode-alist '("\\.isle\\'" . lisp-mode))
+
 ; http://everything2.com/index.pl?node_id=1038451
 (defun create-scratch-buffer nil
   (interactive)
