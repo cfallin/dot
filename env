@@ -97,3 +97,5 @@ alias e='emacsclient --tty'
 
 export EDITOR=vim
 export GPG_TTY=`tty`
+
+export PATH=$HOME/.wasmtime/bin:$PATH

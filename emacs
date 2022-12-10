@@ -10,7 +10,7 @@
 
 ;(load "~/.emacs.d/themes/meacupla-theme.el")
 ;(set-default-font "Inconsolata 15")
-(set-frame-font "Source Code Pro 14")
+;(set-frame-font "Source Code Pro 14")
 
 ;; C-x b to a buffer should always show the buffer in the current window,
 ;; even if open somewhere else -- sometimes we want two windows on the
@@ -21,6 +21,8 @@
 
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 10 1024 1024))
+
+(setq mac-command-modifier 'meta)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key bindings.
@@ -67,8 +69,9 @@
 
 (setq package-list
 	'(flycheck  ; on-the-fly error checking
-	  company  ; autocompletions
-	  lsp-mode ; language server protocol
+	  company   ; autocompletions
+	  ;lsp-mode  ; language server protocol
+	  eglot
 	  ; Rust...
 	  rust-mode
 	  flycheck-rust
@@ -183,13 +186,13 @@
 ;; Rust.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'flycheck)
-(require 'flycheck-rust)
+;;(require 'flycheck)
+;;(require 'flycheck-rust)
 
 (add-hook 'rust-mode-hook (lambda ()
-			    (flycheck-mode)
+;;			    (flycheck-mode)
 			    (company-mode)
-                            (lsp)
+                            (eglot-ensure)
                             (local-set-key (kbd "C-c C-i") #'rustfmt-format-buffer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -275,8 +278,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(eldoc-echo-area-use-multiline-p 3)
  '(package-selected-packages
-   '(ripgrep lsp-mode forge magithub yaml-mode vterm unfill undo-tree treemacs-projectile toml-mode switch-window solarized-theme scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode projectile-ripgrep openwith ocamlformat nasm-mode merlin magit lua-mode lsp-ivy key-chord helm-projectile haskell-mode gruvbox-theme groovy-mode golden-ratio gnuplot-mode ggtags geiser-guile fsharp-mode flymake-rust flycheck-rust exec-path-from-shell evil deadgrep csharp-mode counsel company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml bind-key ac-slime))
+   '(eglot rust-mode ripgrep forge magithub yaml-mode vterm unfill undo-tree treemacs-projectile toml-mode switch-window solarized-theme scala-mode rustfmt rfringe redo+ racket-mode racer protobuf-mode projectile-ripgrep openwith ocamlformat nasm-mode merlin magit lua-mode lsp-ivy key-chord helm-projectile haskell-mode gruvbox-theme groovy-mode golden-ratio gnuplot-mode ggtags geiser-guile fsharp-mode flymake-rust flycheck-rust exec-path-from-shell evil deadgrep csharp-mode counsel company-ycmd company-racer color-theme-modern color-theme clang-format cargo caml bind-key ac-slime))
  '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
