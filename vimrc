@@ -59,14 +59,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'nixprime/cpsm'
+"Plugin 'nixprime/cpsm'
 "Plugin 'neoclide/coc.nvim'
 "Plugin 'rhysd/vim-clang-format'
 call vundle#end()
 
 let g:ctrlp_max_depth=40
 let g:ctrlp_max_files=0
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+"let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 
 

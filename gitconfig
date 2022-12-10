@@ -17,6 +17,8 @@
 [init]
 	defaultBranch = main
 [commit]
-	gpgsign = true
+#	gpgsign = true
 [log]
 	showSignature = false
+[github]
+	user = cfallin
