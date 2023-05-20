@@ -130,7 +130,7 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (require 'helm)
-(require 'helm-config)
+;;(require 'helm-config)
 (require 'helm-projectile)
 
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
